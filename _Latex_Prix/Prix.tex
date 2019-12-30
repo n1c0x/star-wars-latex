@@ -1,0 +1,251 @@
+\documentclass{article}
+\usepackage[french]{babel}
+\usepackage[autolanguage,np]{numprint}
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\chead{Et pour quelques crédits de plus\ldots}
+\usepackage{multicol, multirow, colortbl}
+\usepackage{booktabs}% http://ctan.org/pkg/booktabs
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont[Mapping=tex-text]{Sitka Display}
+\usepackage[small,sf,bf]{titlesec}
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{sectsty}
+
+\definecolor{DarkGreen}{HTML}{384d3e}
+\definecolor{PureWhite}{HTML}{FFFFFF}
+\definecolor{DarkRed}{HTML}{6e272d}
+\definecolor{DarkGold}{HTML}{a48e3b}
+\definecolor{LightGrey}{HTML}{c2c2c2}
+
+\sectionfont{\color{DarkGreen}}
+\subsectionfont{\color{DarkRed}}
+\subsubsectionfont{\color{DarkGold}}
+
+
+\begin{document}
+
+\title{\vspace{-0.5cm}{\Huge Et pour quelques crédits de plus\ldots} \vspace{-1cm}}
+
+\date{}
+
+\maketitle
+
+\section*{Un aperçu du système monétaire}
+A l'époque impériale, le système monétaire a été unifié dans toute la galaxie. Les crédits républicains et la myriade de monnaies locales qui existaient dans la Bordure Moyenne et la Bordure Extérieure ont été remplacés par les crédits impériaux, qui sont actuellement acceptés quasiment partout dans la galaxie. \\
+
+Les devises impériales se présentent sous la forme de plaques de différentes formes, tailles et valeurs dotées de dispositifs de sécurité qui garantissent leur valeur et compliquent grandement la contrefaçon. Dans les mondes "civilisés", les plaques de crédit peuvent être remplacées par des circuits électroniques, des crédit-puces. Ces circuits mémoriels sécurisés tiennent le compte des transactions effectuées par le porteur et donc du crédit qui lui reste. Les crédit-puces, de la taille d'un portefeuille, sont peu à peu remplacées par des crédit-sticks de la taille d'un stylo, plus faciles à transporter. Pour ces systèmes de transfert électronique, une empreinte digitale ou rétinienne est nécessaire pour valider toute transaction.
+
+Pour les transactions importantes, on se passe en général de ce genre d'appareils, préférant la sécurité d'une transaction directe de banque à banque. Des circuits portatifs sécurisés existent néanmoins : avec de tels appareils, il faut en général valider une transaction par son empreinte génétique, même si d'autres sécurités peuvent être présentes. 
+
+Les transactions effectuées à l'aide de crédit-puces ou de crédit-sticks sont traçables informatiquement. C'est pourquoi de nombreuses organisations criminelles ou marginales (comme la Rébellion) préfèrent se passer de ces moyens de paiement électronique et utilises des devises "palpables" ou parfois des lingots de métaux précieux. 
+
+\section*{Une idée de la valeur des choses}
+D'un bout à l'autre de la galaxie, les prix varient fortement, en fonction de l'offre et de la demande. En effet, les possibilités d'approvisionnement, ou même la légalité du produit recherché varient de système en système et même parfois à l'intérieur d'un même système. 
+
+C'est pourquoi tous les prix apparaissant par la suite ne sont que des prix moyens. 
+
+Pour commencer, voici une échelle de grandeur pour les prix : 
+\renewcommand{\arraystretch}{1.2}
+\begin{center}
+	\begin{tabular}{|c|l|}
+		\hline 
+		1 & 4 litres d'eau, un verre de bière légère \\ 
+		\hline 
+		10 & Une lampe torche, un verre de liqueur, un kilo de nourriture \\ 
+		\hline 
+		100 & Un outil standard, un medpac, une nuit dans un hotel \\ 
+		\hline 
+		\numprint{1000} & Un fusil blaster, un holoprojecteur, un datapad \\ 
+		\hline 
+		\numprint{10000} & Un landspeeder neuf, un droïde évolué \\ 
+		\hline 
+		\numprint{100000} & Un vaisseau cargo neuf, un chasseur militaire \\ 
+		\hline 
+		\numprint{1000000} & Un yacht luxueux, un vaisseau de guerre léger d'occasion \\ 
+		\hline 
+	\end{tabular} 
+\end{center}
+
+Enfin, voici une idée du coût de la vie dans la galaxie : 
+\begin{center}
+	\begin{tabular}{|l|c|l|c|}
+		\hline 
+		\multicolumn{2}{|c|}{\cellcolor{DarkRed} {\large \textcolor{PureWhite}{\textbf{Services}}}} & \multicolumn{2}{c|}{\cellcolor{DarkRed} {\large \textcolor{PureWhite}{\textbf{Biens}}}} \\ 
+		\hline 
+		Restaurant, bas prix & 5 & Animal (commun, bétail, exotique) & 100/500/\numprint{2000} \\ 
+		\hline 
+		Restaurant, ordinaire & 15 & Artisanat/Art & 100/\numprint{1000} \\ 
+		\hline 
+		Restaurant, luxueux & 20 & Bacta (1 L) & 100 \\ 
+		\hline 
+		Logement (1 jour), bas prix & 50 & Carburant (1 Kg) & 25 \\ 
+		\hline 
+		Logement (1 jour), ordinaire & 100 & Épice (1 Kg) (Ryll/Glitterstim) & 100/\numprint{10000} \\ 
+		\hline 
+		Logement (1 jour), luxueux & 200 & Gemmes (1 Kg) (semi-précieux/précieux) & 100/\numprint{10000} \\ 
+		\hline 
+		Ouvrier (1 jour) & 50 & Holovid & 20 \\ 
+		\hline 
+		Spécialiste (1 jour) & 250 & Minerai (1 t) (Standard/Rare) & 1 500/\numprint{25000} \\ 
+		\hline 
+		Traitement au bacto (12h) & \numprint{3000} & Textile (1 m) & 10 \\ 
+		\hline 
+	\end{tabular} 
+\end{center}
+
+
+
+
+\section*{Marchandises : Poids, offre, demande et prix à la tonne}
+
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{p{10cm}p{3cm}}
+	\textbf{Légende} & \textbf{Offre et demande} \\ 
+	\begin{itemize}
+		\item Entre parenthèses : poids en tonnes par m$^{2}$.
+		\item Colonnes : Niveau technologique de la planète.
+		\item Lignes : Catégorie de marchandises.
+	\end{itemize}
+	& \begin{itemize}
+		\item TB : Très Bas
+		\item B : Bas
+		\item M : Moyen
+		\item H : Haut
+		\item TH : Très Haut
+	\end{itemize} \\
+\end{tabular} 
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|p{2.3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+	\hline 
+	\rowcolor{DarkRed} & \centering {\textcolor{PureWhite}{\large \textbf{Pierre}}} & \centering {\textcolor{PureWhite}{\large \textbf{Féodal}}} & \centering {\textcolor{PureWhite}{\large \textbf{Industriel}}} & \centering {\textcolor{PureWhite}{\large \textbf{Atomique}}} & \centering {\textcolor{PureWhite}{\large \textbf{Information}}} & \centering {\textcolor{PureWhite}{\large \textbf{Espace}}} \tabularnewline
+	\hline
+	\textbf{Low Tech} (2) &  &  &  &  &  &  \\ 
+	\leftskip=0.5cm
+	\textit{Offre} \par \textit{Demande} & \centering M/\numprint{3300} \par H/\numprint{3465} & \centering H/\numprint{3135} \par TH/\numprint{3630} & \centering H/\numprint{3135} \par M/\numprint{3300} & \centering M/\numprint{3300} \par M/\numprint{3300} & \centering B/\numprint{3465} \par B/\numprint{3135} & \centering B/\numprint{3465} \par B/\numprint{3135} \tabularnewline 
+	\hline 
+	\leftskip=0cm
+	\textbf{Mid Tech} (1) &  &  &  &  &  &  \\ 
+	\leftskip=0.5cm
+	\textit{Offre} \par \textit{Demande} & \centering --/-- \par TB/\numprint{4860} & \centering --/-- \par B/\numprint{5130} & \centering M/\numprint{5400} \par H/\numprint{5670} & \centering H/\numprint{5130} \par M/\numprint{5400} & \centering H/\numprint{5130} \par M/\numprint{5400} & \centering M/\numprint{5400} \par B/\numprint{5130} \tabularnewline 
+	\hline 
+	\leftskip=0cm
+	\textbf{High Tech} (0,5) &  &  &  &  &  &  \\ 
+	\leftskip=0.5cm
+	\textit{Offre} \par \textit{Demande} & \centering --/-- \par TB/\numprint{5400} & \centering --/-- \par TB/\numprint{5400} & \centering --/-- \par M/\numprint{6000} & \centering --/-- \par H/\numprint{6300} & \centering M/\numprint{6000} \par M/\numprint{6000} & \centering H/\numprint{5700} \par B/\numprint{5700} \tabularnewline 
+	\hline 
+	\leftskip=0cm
+	\textbf{Métaux} (10) &  &  &  &  &  &  \\ 
+	\leftskip=0.5cm
+	\textit{Offre} \par \textit{Demande} & \centering --/-- \par B/\numprint{2280} & \centering --/-- \par M/\numprint{2400} & \centering B/\numprint{2520} \par TH/\numprint{2640} & \centering M/\numprint{2400} \par H/\numprint{2520} & \centering H/\numprint{2280} \par H/\numprint{2520} & \centering TH/\numprint{2160} \par M/\numprint{2400} \tabularnewline 
+	\hline 
+	\leftskip=0cm
+	\textbf{Minéraux} (5) &  &  &  &  &  &  \\ 
+	\leftskip=0.5cm
+	\textit{Offre} \par \textit{Demande} & \centering TB/\numprint{1650} \par TB/\numprint{1350} & \centering B/\numprint{1575} \par B/\numprint{1425} & \centering B/\numprint{1575} \par TH/\numprint{1650} & \centering M/\numprint{1500} \par H/\numprint{1575} & \centering M/\numprint{1500} \par M/\numprint{1500} & \centering M/\numprint{1500} \par B/\numprint{1425} \tabularnewline 
+	\hline 
+	\leftskip=0cm
+	\textbf{Luxe} (var) &  &  &  &  &  &  \\ 
+	\leftskip=0.5cm
+	\textit{Offre} \par \textit{Demande} & \centering TB/110\% \par M/100\% & \centering B/105\% \par M/100\% & \centering B/105\% \par M/100\% & \centering M/100\% \par M100\% & \centering H/95\% \par M/100\% & \centering TH/90\% \par M/100\% \tabularnewline 
+	\hline 
+	\leftskip=0cm
+	\textbf{Nourriture} (0,5) &  &  &  &  &  &  \\ 
+	\leftskip=0.5cm
+	\textit{Offre} \par \textit{Demande} & \centering B/\numprint{1890} \par H/\numprint{1890} & \centering M/\numprint{1800} \par M/\numprint{1800} & \centering H/\numprint{1710} \par M/\numprint{1800} & \centering M/\numprint{1800} \par M/\numprint{1800} & \centering B/\numprint{1890} \par M/\numprint{1800} & \centering M/\numprint{1800} \par B/\numprint{1710} \tabularnewline
+	\hline 
+	\leftskip=0cm
+	\textbf{Médical} (0,5) &  &  &  &  &  &  \\ 
+	\leftskip=0.5cm
+	\textit{Offre} \par \textit{Demande} & \centering TB/\numprint{4620} \par M/\numprint{4200} & \centering TB/\numprint{4620} \par H/\numprint{4410} & \centering B/\numprint{4410} \par H/\numprint{4410} & \centering M/\numprint{4200} \par M/\numprint{4200} & \centering H/\numprint{3990} \par M/\numprint{4200} & \centering H/\numprint{3990} \par B/\numprint{3990} \tabularnewline
+	\hline 
+\end{tabular} 
+
+\section*{Autres tables}
+
+\begin{tabular}{p{7cm}p{9cm}}
+	\begin{tabular}[b]{|p{4cm}|p{1cm}|}
+		\hline 
+		\multicolumn{2}{|c|}{\cellcolor{DarkRed} \textbf{{\large \textcolor{PureWhite}{Négociation}}}} \\ 
+		\hline 
+		{\Large \includegraphics[height=\fontcharht\font`\B]{result_triomphe_triumph} \includegraphics[height=\fontcharht\font`\B]{result_triomphe_triumph}} & $-50\%$ \\ 
+		\hline 
+		{\Large \includegraphics[height=\fontcharht\font`\B]{result_triomphe_triumph}} & $-20\%$ \\ 
+		\hline 
+		Pour chaque {\Large \includegraphics[height=\fontcharht\font`\B]{result_succes_success}} ou {\Large \includegraphics[height=\fontcharht\font`\B]{result_avantage_advantage}} restant & $-5\%$ \\ 
+		\hline 
+		Pour chaque {\Large \includegraphics[height=\fontcharht\font`\B]{result_echec_failure}} ou {\Large \includegraphics[height=\fontcharht\font`\B]{result_menace_threat}} restant & $+5\%$ \\  
+		\hline 
+		{\Large \includegraphics[height=\fontcharht\font`\B]{result_desastre_despair}} & $+50\%$ \\ 
+		\hline 
+		{\Large \includegraphics[height=\fontcharht\font`\B]{result_desastre_despair} \includegraphics[height=\fontcharht\font`\B]{result_desastre_despair}} & $+100\%$ \\ 
+		\hline 
+	\end{tabular} \vspace{0.5cm} \par  \begin{tabular}{|c|c|c|}
+		\hline 
+		\multicolumn{3}{|c|}{\cellcolor{DarkRed} \textbf{{\large \textcolor{PureWhite}{Prix de base au marché noir}}}} \\ 
+		\hline 
+		Statut de l'objet & Prix de vente & Prix d'achat \\ 
+		\hline 
+		Légal & $\times2$ & $\times0,5$ \\ 
+		\hline 
+		Payant & $\times3$ & $\times1,5$ \\ 
+		\hline 
+		Restreint & $\times4$ & $\times2$ \\ 
+		\hline 
+		Illégal & $\times5$ & $\times2,5$ \\ 
+		\hline 
+	\end{tabular} & \begin{tabular}{|c|c|}
+						\hline 
+						\multicolumn{2}{|c|}{\cellcolor{DarkRed} \textbf{{\large \textcolor{PureWhite}{Contacts au marché noir}}}} \\ 
+						\hline 
+						\cellcolor{DarkGold}\textbf{Population} & \cellcolor{DarkGold}\textbf{Difficulté de base} \\ 
+						\hline 
+						Élevée & {\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}} \\ 
+						\hline 
+						Importante & {\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}} \\ 
+						\hline 
+						Moyenne & {\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}} \\ 
+						\hline 
+						Faible & {\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}} \\ 
+						\hline 
+						Très faible & {\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}} \\ 
+						\hline 
+						\cellcolor{DarkGold}\textbf{Conditions} & \cellcolor{DarkGold}\textbf{Modificateur de difficulté} \\ 
+						\hline 
+						Présence impériale légère/inexistante & {\Large -- \includegraphics[height=\fontcharht\font`\B]{dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}} \\ 
+						\hline 
+						Présence impériale normale & --- \\ 
+						\hline 
+						Présence impériale importante &  {\Large + \includegraphics[height=\fontcharht\font`\B]{dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}} \\ 
+						\hline 
+						Gouvernement corrompu/laxiste & {\Large -- \includegraphics[height=\fontcharht\font`\B]{dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}} \\ 
+						\hline 
+						Gouvernement standard & --- \\ 
+						\hline 
+						Gouvernement répressif & {\Large + \includegraphics[height=\fontcharht\font`\B]{dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}} \\ 
+						\hline 
+					\end{tabular} \\ 
+\end{tabular} 
+
+
+
+%\includegraphics[height=\fontcharht\font`\B]{result_succes_success}
+%\includegraphics[height=\fontcharht\font`\B]{result_avantage_advantage}
+%\includegraphics[height=\fontcharht\font`\B]{result_triomphe_triumph}
+
+%\includegraphics[height=\fontcharht\font`\B]{result_echec_failure}
+%\includegraphics[height=\fontcharht\font`\B]{result_menace_threat}
+%\includegraphics[height=\fontcharht\font`\B]{result_desastre_despair}
+
+%{\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}}
+
+
+\end{document}

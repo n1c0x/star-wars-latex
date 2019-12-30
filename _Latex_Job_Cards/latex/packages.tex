@@ -1,0 +1,87 @@
+%% Le présent projet est en licence Crative Commons BY-NC-SA 3.0, Romuald THION.
+%% Vous devez créditer l'oeuvre, vous n'êtes pas autorisé à faire un usage commercial de cette oeuvre,
+%% tout ou partie du matériel la composant, dans le cas où vous effectuez un remix, que vous transformez,
+%% ou créez à partir du matériel composant l'oeuvre originale, vous devez diffuser l'Oeuvre modifiée dans les même conditions.
+
+%% https://creativecommons.org/licenses/by-nc-sa/3.0/fr/
+
+%% The Tikz's is adapted from Arvid's tikz card template
+%% https://tex.stackexchange.com/questions/47924/creating-playing-cards-using-tikz
+%% https://tex.stackexchange.com/questions/243740/print-double-sided-playing-cards
+
+\usepackage[margin=0mm]{geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} 
+\usepackage[french]{babel}
+
+%\usepackage{lmodern}
+\usepackage[light]{anttor} %condensed, light
+%font http://www.tug.dk/FontCatalogue/antykwatorunska/
+
+
+
+\usepackage{microtype}
+% microtype – Subliminal refinements towards typographical perfection
+% https://www.ctan.org/pkg/microtype?lang=en
+\sloppy
+
+\usepackage{graphicx}
+\usepackage{color}
+
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shadows}
+\usetikzlibrary{fadings}
+\usetikzlibrary{svg.path}
+
+\usepackage{url}
+
+\pagestyle{empty}
+
+\setlength{\parindent}{0pt}
+% equivalent to global noi,dent
+
+\definecolor{titlebg}{RGB}{30,30,30}
+% title backbroung color
+
+\definecolor{popbg}{RGB}{0,100,200}   %~blue
+\definecolor{hardbg}{RGB}{80,180,0}   %~light green
+\definecolor{softbg}{RGB}{200,50,50}  %~red
+\definecolor{langbg}{RGB}{100,50,30}  %~maroon
+\definecolor{theorybg}{RGB}{180,50,150}  %~pink
+\definecolor{gamebg}{RGB}{200,140,20} %~ocre
+\definecolor{webbg}{RGB}{40,90,20}  %~dark green
+
+\definecolor{manbg}{RGB}{70,70,70} %~grey
+\definecolor{univbg}{RGB}{70,70,70}
+\definecolor{rulesbg}{RGB}{70,70,70}
+
+\definecolor{DarkGreen}{HTML}{384d3e}
+\definecolor{PureWhite}{HTML}{FFFFFF}
+\definecolor{DarkRed}{HTML}{6e272d}
+\definecolor{DarkGold}{HTML}{a48e3b}
+\definecolor{BoostBlue}{RGB}{114,204,219}
+\definecolor{DifficultyPurple}{RGB}{82,36,128}
+\definecolor{ChallengeRed}{RGB}{209,35,42}
+\definecolor{AbilityGreen}{RGB}{63,172,73}
+\definecolor{ProficiencyYellow}{RGB}{255,241,0}
+
+
+
+% categories background colors
+
+\definecolor{contentbg}{RGB}{255,255,255}
+%\definecolor{contentbg}{RGB}{250,250,245}
+% main (text) content color
+
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont[Mapping=tex-text]{sitka}[
+	Path = /usr/share/texlive/texmf-dist/fonts/truetype/public/sitka/ ,
+	Extension       =  .ttc ,
+	UprightFont     =  Sitka   ,
+	ItalicFont      =  SitkaI ,
+	BoldFont        =  SitkaB    ,
+	BoldItalicFont  =  SitkaZ ,
+]
