@@ -1,0 +1,55 @@
+$font-stack:    'Noto Sans', sans-serif;
+$title-color:   #58180D;
+$toc-width:     300px;
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+@import url('http://fr.allfont.net/allfont.css?fonts=star-jedi');
+
+html {
+    font-family: $font-stack;
+}
+
+body {
+    margin-left: $toc-width + 50;
+    background-image: url(../_img/bg-a4-odd.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+%jedi {
+  color: $title-color;
+  font-family: 'Star Jedi';
+}
+
+h1, h2, h3 {
+  @extend %jedi;
+
+  & + p::first-letter {
+    @extend %jedi;
+    font-size:2.5em;
+    padding-right:0.2em;
+    float:left;
+  }
+}
+
+a {
+  color: $title-color;
+  text-decoration: none;
+}
+
+#TOC {
+  position: fixed;
+  width: $toc-width;
+  left: 0;
+  top: 0;
+  border-right: 1px solid #ddd;
+  z-index: 1000;
+  height: 100%;
+  overflow: auto;
+
+  ul {
+    list-style-type: none;
+    margin: 7px 20px;
+    padding: 0;
+  }
+}

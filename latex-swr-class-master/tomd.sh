@@ -1,0 +1,1 @@
+pandoc -S --toc --wrap=preserve --css pandoc.css -s swr-livre-joueur.tex -o swr-livre-joueur.html
