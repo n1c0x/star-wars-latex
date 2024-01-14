@@ -1,2 +1,2 @@
 # star-wars-latex
-Latex version of Star Wars documents
+Frence and english Latex version of various Star Wars documents.
