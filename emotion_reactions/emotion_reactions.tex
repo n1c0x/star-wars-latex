@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[autolanguage,np]{numprint} % tableau spécial
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\chead{Exemples de réactions en fonction d'émotions}
+\usepackage{multicol}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+%\setmainfont[Mapping=tex-text]{Sitka Display}
+\usepackage[small,sf,bf]{titlesec}
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{colortbl} % table color
+\usepackage{sectsty}
+\usepackage{tabularray}
+\usepackage{wasysym} % \male and \female icons
+
+% Color definition
+\definecolor{DarkGreen}{HTML}{384d3e}
+\definecolor{PureWhite}{HTML}{FFFFFF}
+\definecolor{DarkRed}{HTML}{6e272d}
+\definecolor{DarkGold}{HTML}{a48e3b}
+
+% Each part and section has its own color
+\partfont{\color{DarkGreen}}
+\sectionfont{\color{DarkRed}}
+\subsectionfont{\color{DarkGold}}
+\subsubsectionfont{\color{DarkRed}}
+
+\author{}
+
+\begin{document}
+
+\title{\vspace{-0.5cm}{\Huge Exemples de réactions en fonction d'émotions} \vspace{-1cm}}
+
+\date{}
+
+\maketitle
+
+\renewcommand{\arraystretch}{1.4}
+\begin{center}
+	\begin{tabular}{|p{4.5cm}|p{12cm}|}
+		\hline 
+		\cellcolor{DarkRed} {\large \textcolor{PureWhite}{\textbf{ÉMOTION}}} & \cellcolor{DarkRed} {\large \textcolor{PureWhite}{\textbf{EXEMPLES DE RÉACTIONS}}} \\
+		\hline 
+		Joie & \begin{itemize}
+			\item Chantonne ou sifflote un air de sa région d'origine. 
+			\item Croit toujours que tout le monde la partage et se laisse déborder
+			\item Exprime son plaisir sans la moindre retenue
+			\item S'excuse aurpès de ceux qui ne la partagent pas
+			\item Tente tant bien que mal de le cacher, comme s'il avait honte de l'éprouver, mais un rictus apparaît toujours sur son visage
+			\end{itemize} \\
+		\hline 
+		Tristesse &  \\
+		\hline 
+		Peur & \\
+		\hline 
+		Colère & \\
+		\hline 
+		Dégoût & \\
+		\hline 
+	\end{tabular}
+\end{center}
+
+\end{document}

@@ -170,9 +170,8 @@ Enfin, voici une idée du coût de la vie dans la galaxie :
 \end{tabular} 
 
 \section*{Autres tables}
-
-\begin{tabular}{p{7cm}p{9cm}}
-	\begin{tabular}[b]{|p{4cm}|p{1cm}|}
+\begin{multicols}{2}
+	\begin{tabular}[b]{|p{5cm}|p{1cm}|}
 		\hline 
 		\multicolumn{2}{|c|}{\cellcolor{DarkRed} \textbf{{\large \textcolor{PureWhite}{Négociation}}}} \\ 
 		\hline 
@@ -188,11 +187,12 @@ Enfin, voici une idée du coût de la vie dans la galaxie :
 		\hline 
 		{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_desastre_despair} \includegraphics[height=\fontcharht\font`\B]{../img/result_desastre_despair}} & $+100\%$ \\ 
 		\hline 
-	\end{tabular} \vspace{0.5cm} \par  \begin{tabular}{|c|c|c|}
+	\end{tabular} 
+	\begin{tabular}{|c|c|c|}
 		\hline 
 		\multicolumn{3}{|c|}{\cellcolor{DarkRed} \textbf{{\large \textcolor{PureWhite}{Prix de base au marché noir}}}} \\ 
 		\hline 
-		Statut de l'objet & Prix de vente & Prix d'achat \\ 
+		\cellcolor{DarkGold}\textbf{Statut de l'objet} & \cellcolor{DarkGold}\textbf{Prix de vente} & \cellcolor{DarkGold}\textbf{Prix d'achat} \\ 
 		\hline 
 		Légal & $\times2$ & $\times0,5$ \\ 
 		\hline 
@@ -202,50 +202,38 @@ Enfin, voici une idée du coût de la vie dans la galaxie :
 		\hline 
 		Illégal & $\times5$ & $\times2,5$ \\ 
 		\hline 
-	\end{tabular} & \begin{tabular}{|c|c|}
-						\hline 
-						\multicolumn{2}{|c|}{\cellcolor{DarkRed} \textbf{{\large \textcolor{PureWhite}{Contacts au marché noir}}}} \\ 
-						\hline 
-						\cellcolor{DarkGold}\textbf{Population} & \cellcolor{DarkGold}\textbf{Difficulté de base} \\ 
-						\hline 
-						Élevée & {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
-						\hline 
-						Importante & {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
-						\hline 
-						Moyenne & {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
-						\hline 
-						Faible & {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
-						\hline 
-						Très faible & {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
-						\hline 
-						\cellcolor{DarkGold}\textbf{Conditions} & \cellcolor{DarkGold}\textbf{Modificateur de difficulté} \\ 
-						\hline 
-						Présence impériale légère/inexistante & {\Large -- \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
-						\hline 
-						Présence impériale normale & --- \\ 
-						\hline 
-						Présence impériale importante &  {\Large + \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
-						\hline 
-						Gouvernement corrompu/laxiste & {\Large -- \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
-						\hline 
-						Gouvernement standard & --- \\ 
-						\hline 
-						Gouvernement répressif & {\Large + \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
-						\hline 
-					\end{tabular} \\ 
-\end{tabular} 
-
-
-
-%\includegraphics[height=\fontcharht\font`\B]{result_succes_success}
-%\includegraphics[height=\fontcharht\font`\B]{result_avantage_advantage}
-%\includegraphics[height=\fontcharht\font`\B]{result_triomphe_triumph}
-
-%\includegraphics[height=\fontcharht\font`\B]{result_echec_failure}
-%\includegraphics[height=\fontcharht\font`\B]{result_menace_threat}
-%\includegraphics[height=\fontcharht\font`\B]{result_desastre_despair}
-
-%{\Large \includegraphics[height=\fontcharht\font`\B]{dice_purple}}
-
+	\end{tabular}
+\end{multicols}
+\begin{tabular}{|c|c|}
+	\hline 
+	\multicolumn{2}{|c|}{\cellcolor{DarkRed} \textbf{{\large \textcolor{PureWhite}{Contacts au marché noir}}}} \\ 
+	\hline 
+	\cellcolor{DarkGold}\textbf{Population} & \cellcolor{DarkGold}\textbf{Difficulté de base} \\ 
+	\hline 
+	Élevée & {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
+	\hline 
+	Importante & {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
+	\hline 
+	Moyenne & {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
+	\hline 
+	Faible & {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
+	\hline 
+	Très faible & {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
+	\hline 
+	\cellcolor{DarkGold}\textbf{Conditions} & \cellcolor{DarkGold}\textbf{Modificateur de difficulté} \\ 
+	\hline 
+	Présence impériale légère/inexistante & {\Large -- \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
+	\hline 
+	Présence impériale normale & --- \\ 
+	\hline 
+	Présence impériale importante &  {\Large + \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
+	\hline 
+	Gouvernement corrompu/laxiste & {\Large -- \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
+	\hline 
+	Gouvernement standard & --- \\ 
+	\hline 
+	Gouvernement répressif & {\Large + \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
+	\hline 
+\end{tabular}
 
 \end{document}
