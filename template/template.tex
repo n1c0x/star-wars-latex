@@ -17,6 +17,7 @@
 \usepackage{xcolor}
 \usepackage{colortbl} % table color
 \usepackage{tabularray}
+\usepackage{makecell}
 \usepackage{sectsty}
 \usepackage{wasysym} % \male and \female icons
 
@@ -32,11 +33,15 @@
 \subsectionfont{\color{DarkGold}}
 \subsubsectionfont{\color{DarkRed}}
 
+% Variable definition
+%% Special table horizontal space for first column
+\newcommand{\specialtablehspace}{0.5cm}
+
 \author{}
 
 \begin{document}
 
-\title{\vspace{-0.5cm}{\Huge Titreeeeeeeee du document} \vspace{-1cm}}
+\title{\vspace{-0.5cm}{\Huge Titre du document} \vspace{-1cm}}
 
 \date{}
 
@@ -166,11 +171,84 @@
 	\hline 
 \end{tabular}
 
+\section*{Nouveau Tableau spécial}
+\begin{center}
+	\begin{tabular}{|l|c|c|c|c|c|c|}
+		\hline
+		\rowcolor{DarkRed}
+		\textbf{\color{PureWhite}} & \textbf{\color{PureWhite}Pierre} & \textbf{\color{PureWhite}Féodal} & \textbf{\color{PureWhite}Industriel} & \textbf{\color{PureWhite}Atomique} & \textbf{\color{PureWhite}Information} & \textbf{\color{PureWhite}Espace} \\
+		\hline
+		\makecell[l]{\textbf{Low Tech} (2) \\ \hspace{\specialtablehspace}\textit{Offre} \\ \hspace{\specialtablehspace}\textit{Demande}} & \makecell[t]{M/\numprint{3300} \\ H/\numprint{3465}} & \makecell[t]{M/\numprint{3300} \\ H/\numprint{3465}} & \makecell[t]{M/\numprint{3300} \\ H/\numprint{3465}} & \makecell[t]{M/\numprint{3300} \\ H/\numprint{3465}} & \makecell[t]{M/\numprint{3300} \\ H/\numprint{3465}} & \makecell[t]{M/\numprint{3300} \\ H/\numprint{3465}} \\
+		\hline
+		\makecell[l]{\textbf{Mid Tech} (1) \\ \hspace{\specialtablehspace} \textit{Offre} \\ \hspace{\specialtablehspace} \textit{Demande}} & \makecell[t]{--/-- \\ TB/\numprint{4860}} & \makecell[t]{--/-- \\ B/\numprint{5130}} & \makecell[t]{M/\numprint{5400} \\ H/\numprint{5670}} & \makecell[t]{H/\numprint{5130} \\ M/\numprint{5400}} & \makecell[t]{H/\numprint{5130} \\ M/\numprint{5400}} & \makecell[t]{M/\numprint{5400} \\ B/\numprint{5130}} \\
+		\hline
+		\makecell[l]{\textbf{High Tech} (0,5) \\ \hspace{\specialtablehspace} \textit{Offre} \\ \hspace{\specialtablehspace} \textit{Demande}} & \makecell[t]{--/-- \\ TB/\numprint{5400}} & \makecell[t]{--/-- \\ TB/\numprint{5400}} & \makecell[t]{--/-- \\ M/\numprint{6000}} & \makecell[t]{--/-- \\ H/\numprint{6300}} & \makecell[t]{M/\numprint{6000} \\ M/\numprint{6000}} & \makecell[t]{H/\numprint{5700} \\ B/\numprint{5700}} \\
+		\hline
+		\makecell[l]{\textbf{Métaux} (10) \\ \hspace{\specialtablehspace} \textit{Offre} \\ \hspace{\specialtablehspace} \textit{Demande}} & \makecell[t]{--/-- \\ B/\numprint{2280}} & \makecell[t]{--/-- \\ M/\numprint{2400}} & \makecell[t]{B/\numprint{2520} \\ TH/\numprint{2640}} & \makecell[t]{M/\numprint{2400} \\ H/\numprint{2520}} & \makecell[t]{H/\numprint{2280} \\ H/\numprint{2520}} & \makecell[t]{TH/\numprint{2160} \\ M/\numprint{2400}} \\
+		\hline
+		\makecell[l]{\textbf{Minéraux} (5) \\ \hspace{\specialtablehspace} \textit{Offre} \\ \hspace{\specialtablehspace} \textit{Demande}} & \makecell[t]{TB/\numprint{1650} \\ TB/\numprint{1350}} & \makecell[t]{B/\numprint{1575} \\ B/\numprint{1425}} & \makecell[t]{B/\numprint{1575} \\ TH/\numprint{1650}} & \makecell[t]{M/\numprint{1500} \\ H/\numprint{1575}} & \makecell[t]{M/\numprint{1500} \\ M/\numprint{1500}} & \makecell[t]{M/\numprint{1500} \\ B/\numprint{1425}} \\
+		\hline
+		\makecell[l]{\textbf{Luxe} (var) \\ \hspace{\specialtablehspace} \textit{Offre} \\ \hspace{\specialtablehspace} \textit{Demande}} & \makecell[t]{TB/110\% \\ M/100\%} & \makecell[t]{B/105\% \\ M/100\%} & \makecell[t]{B/105\% \\ M/100\%} & \makecell[t]{M/100\% \\ M100\%} & \makecell[t]{H/95\% \\ M/100\%} & \makecell[t]{TH/90\% \\ M/100\%} \\
+		\hline
+		\makecell[l]{\textbf{Nourriture} (0,5) \\ \hspace{\specialtablehspace} \textit{Offre} \\ \hspace{\specialtablehspace} \textit{Demande}} & \makecell[t]{B/\numprint{1890} \\ H/\numprint{1890}} & \makecell[t]{M/\numprint{1800} \\ M/\numprint{1800}} & \makecell[t]{H/\numprint{1710} \\ M/\numprint{1800}} & \makecell[t]{M/\numprint{1800} \\ M/\numprint{1800}} & \makecell[t]{B/\numprint{1890} \\ M/\numprint{1800}} & \makecell[t]{M/\numprint{1800} \\ B/\numprint{1710}} \\
+		\hline
+		\makecell[l]{\textbf{Médical} (0,5) \\ \hspace{\specialtablehspace} \textit{Offre} \\ \hspace{\specialtablehspace} \textit{Demande}} & \makecell[t]{TB/\numprint{4620} \\ M/\numprint{4200}} & \makecell[t]{TB/\numprint{4620} \\ H/\numprint{4410}} & \makecell[t]{B/\numprint{4410} \\ H/\numprint{4410}} & \makecell[t]{M/\numprint{4200} \\ M/\numprint{4200}} & \makecell[t]{H/\numprint{3990} \\ M/\numprint{4200}} & \makecell[t]{H/\numprint{3990} \\ B/\numprint{3990}} \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{tabular}{|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+% \begin{tabular}{|p{3cm}|c|c|c|c|c|c|}
+	\hline 
+	\rowcolor{DarkRed} & \centering {\textcolor{PureWhite}{\small \textbf{Pierre}}} & \centering {\textcolor{PureWhite}{\small \textbf{Féodal}}} & \centering {\textcolor{PureWhite}{\small \textbf{Industriel}}} & \centering {\textcolor{PureWhite}{\small \textbf{Atomique}}} & \centering {\textcolor{PureWhite}{\small \textbf{Information}}} & \centering {\textcolor{PureWhite}{\small \textbf{Espace}}} \tabularnewline
+	\hline
+	\textbf{Low Tech} (2) &  &  &  &  &  &  \\ 
+	\leftskip=0.5cm
+	\textit{Offre} \par \textit{Demande} & \centering M/\numprint{3300} \par H/\numprint{3465} & \centering H/\numprint{3135} \par TH/\numprint{3630} & \centering H/\numprint{3135} \par M/\numprint{3300} & \centering M/\numprint{3300} \par M/\numprint{3300} & \centering B/\numprint{3465} \par B/\numprint{3135} & \centering B/\numprint{3465} \par B/\numprint{3135} \tabularnewline 
+	\hline 
+	\leftskip=0cm
+	\textbf{Mid Tech} (1) &  &  &  &  &  &  \\ 
+	\leftskip=0.5cm
+	\textit{Offre} \par \textit{Demande} & \centering --/-- \par TB/\numprint{4860} & \centering --/-- \par B/\numprint{5130} & \centering M/\numprint{5400} \par H/\numprint{5670} & \centering H/\numprint{5130} \par M/\numprint{5400} & \centering H/\numprint{5130} \par M/\numprint{5400} & \centering M/\numprint{5400} \par B/\numprint{5130} \tabularnewline 
+	\hline 
+	\leftskip=0cm
+	\textbf{High Tech} (0,5) &  &  &  &  &  &  \\ 
+	\leftskip=0.5cm
+	\textit{Offre} \par \textit{Demande} & \centering --/-- \par TB/\numprint{5400} & \centering --/-- \par TB/\numprint{5400} & \centering --/-- \par M/\numprint{6000} & \centering --/-- \par H/\numprint{6300} & \centering M/\numprint{6000} \par M/\numprint{6000} & \centering H/\numprint{5700} \par B/\numprint{5700} \tabularnewline 
+	\hline 
+	\leftskip=0cm
+	\textbf{Métaux} (10) &  &  &  &  &  &  \\ 
+	\leftskip=0.5cm
+	\textit{Offre} \par \textit{Demande} & \centering --/-- \par B/\numprint{2280} & \centering --/-- \par M/\numprint{2400} & \centering B/\numprint{2520} \par TH/\numprint{2640} & \centering M/\numprint{2400} \par H/\numprint{2520} & \centering H/\numprint{2280} \par H/\numprint{2520} & \centering TH/\numprint{2160} \par M/\numprint{2400} \tabularnewline 
+	\hline 
+	\leftskip=0cm
+	\textbf{Minéraux} (5) &  &  &  &  &  &  \\ 
+	\leftskip=0.5cm
+	\textit{Offre} \par \textit{Demande} & \centering TB/\numprint{1650} \par TB/\numprint{1350} & \centering B/\numprint{1575} \par B/\numprint{1425} & \centering B/\numprint{1575} \par TH/\numprint{1650} & \centering M/\numprint{1500} \par H/\numprint{1575} & \centering M/\numprint{1500} \par M/\numprint{1500} & \centering M/\numprint{1500} \par B/\numprint{1425} \tabularnewline 
+	\hline 
+	\leftskip=0cm
+	\textbf{Luxe} (var) &  &  &  &  &  &  \\ 
+	\leftskip=0.5cm
+	\textit{Offre} \par \textit{Demande} & \centering TB/110\% \par M/100\% & \centering B/105\% \par M/100\% & \centering B/105\% \par M/100\% & \centering M/100\% \par M100\% & \centering H/95\% \par M/100\% & \centering TH/90\% \par M/100\% \tabularnewline 
+	\hline 
+	\leftskip=0cm
+	\textbf{Nourriture} (0,5) &  &  &  &  &  &  \\ 
+	\leftskip=0.5cm
+	\textit{Offre} \par \textit{Demande} & \centering B/\numprint{1890} \par H/\numprint{1890} & \centering M/\numprint{1800} \par M/\numprint{1800} & \centering H/\numprint{1710} \par M/\numprint{1800} & \centering M/\numprint{1800} \par M/\numprint{1800} & \centering B/\numprint{1890} \par M/\numprint{1800} & \centering M/\numprint{1800} \par B/\numprint{1710} \tabularnewline
+	\hline 
+	\leftskip=0cm
+	\textbf{Médical} (0,5) &  &  &  &  &  &  \\ 
+	\leftskip=0.5cm
+	\textit{Offre} \par \textit{Demande} & \centering TB/\numprint{4620} \par M/\numprint{4200} & \centering TB/\numprint{4620} \par H/\numprint{4410} & \centering B/\numprint{4410} \par H/\numprint{4410} & \centering M/\numprint{4200} \par M/\numprint{4200} & \centering H/\numprint{3990} \par M/\numprint{4200} & \centering H/\numprint{3990} \par B/\numprint{3990} \tabularnewline
+	\hline 
+\end{tabular} 
+
 \section*{Tableau spécial}
 \renewcommand{\arraystretch}{1.5}
-\begin{tabular}{|p{2.3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\begin{tabular}{|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+% \begin{tabular}{|p{3cm}|c|c|c|c|c|c|}
 	\hline 
-	\rowcolor{DarkRed} & \centering {\textcolor{PureWhite}{\large \textbf{Pierre}}} & \centering {\textcolor{PureWhite}{\large \textbf{Féodal}}} & \centering {\textcolor{PureWhite}{\large \textbf{Industriel}}} & \centering {\textcolor{PureWhite}{\large \textbf{Atomique}}} & \centering {\textcolor{PureWhite}{\large \textbf{Information}}} & \centering {\textcolor{PureWhite}{\large \textbf{Espace}}} \tabularnewline
+	\rowcolor{DarkRed} & \centering {\textcolor{PureWhite}{\small \textbf{Pierre}}} & \centering {\textcolor{PureWhite}{\small \textbf{Féodal}}} & \centering {\textcolor{PureWhite}{\small \textbf{Industriel}}} & \centering {\textcolor{PureWhite}{\small \textbf{Atomique}}} & \centering {\textcolor{PureWhite}{\small \textbf{Information}}} & \centering {\textcolor{PureWhite}{\small \textbf{Espace}}} \tabularnewline
 	\hline
 	\textbf{Low Tech} (2) &  &  &  &  &  &  \\ 
 	\leftskip=0.5cm
