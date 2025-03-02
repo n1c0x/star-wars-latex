@@ -37,6 +37,20 @@
 %% Special table horizontal space for first column
 \newcommand{\specialtablehspace}{0.5cm}
 
+%% Dices
+\newcommand{\diceblack}{\hspace{0.1cm}{\Large\includegraphics[height=\fontcharht\font`\B]{../img/dice_black}}\hspace{0.1cm}}
+\newcommand{\diceblue}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_blue}}\hspace{0.1cm}}
+\newcommand{\dicegreen}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_green}}\hspace{0.1cm}}
+\newcommand{\dicepurple}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}}\hspace{0.1cm}}
+\newcommand{\dicered}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_red}}\hspace{0.1cm}}
+\newcommand{\diceyellow}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_yellow}}\hspace{0.1cm}}
+\newcommand{\diceadvantage}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_avantage_advantage}}\hspace{0.1cm}}
+\newcommand{\dicedespair}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_desastre_despair}}\hspace{0.1cm}}
+\newcommand{\dicefailure}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_echec_failure}}\hspace{0.1cm}}
+\newcommand{\dicethreat}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_menace_threat}}\hspace{0.1cm}}
+\newcommand{\dicesuccess}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_succes_success}}\hspace{0.1cm}}
+\newcommand{\dicetriumph}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_triomphe_triumph}}\hspace{0.1cm}}
+
 \author{}
 
 \begin{document}
@@ -99,23 +113,24 @@
 	\end{itemize}
 	\section*{Dés}
 	\begin{itemize}
-		\item Dé d'infortune : {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_black}}
-		\item Dé de fortune : {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_blue}}
-		\item Dé d'aptitude : {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_green}}
-		\item Dé de difficulté : {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}}
-		\item Dé de défi : {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_red}}
-		\item Dé de maîtrise : {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_yellow}}
+		\item Dé d'infortune : \diceblack
+		\item Dé de fortune : \diceblue
+		\item Dé d'aptitude : \dicegreen
+		\item Dé de difficulté : \dicepurple
+		\item Dé de défi : \dicered
+		\item Dé de maîtrise : \diceyellow
 	\end{itemize}
 	\section*{Résultats}
 	\begin{itemize}
-		\item Avantage : {\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_avantage_advantage}}
-		\item Désastre : {\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_desastre_despair}}
-		\item Échec : {\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_echec_failure}}
-		\item Menace : {\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_menace_threat}}
-		\item Succès : {\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_succes_success}}
-		\item Triomphe : {\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_triomphe_triumph}}
+		\item Avantage : \diceadvantage
+		\item Désastre : \dicedespair
+		\item Échec : \dicefailure
+		\item Menace : \dicethreat
+		\item Succès : \dicesuccess
+		\item Triomphe : \dicetriumph
 	\end{itemize}
 \end{multicols}
+
 
 \part*{Tableaux}
 \section*{Tableau toute largeur}
@@ -125,7 +140,7 @@
 		\hline 
 		\cellcolor{DarkRed} {\large \textcolor{PureWhite}{\textbf{D100}}} & \cellcolor{DarkRed} {\large \textcolor{PureWhite}{\textbf{Type d'obligation}}} \\
 		\hline 
-		01 -- 08 & \textbf{Addiction} : vous êtes soumis à une addiction (au choix du joueur sous couvert du MJ). Moins le personnage assouvit son addiction, plus celui-ci a du mal à se concentrer sur les tâches banales, ce qui se traduit le plus souvent par l'ajout de {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_black}} à {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_black}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_black}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_black}} aux tests de compétence. \\
+		01 -- 08 & \textbf{Addiction} : vous êtes soumis à une addiction (au choix du joueur sous couvert du MJ). Moins le personnage assouvit son addiction, plus celui-ci a du mal à se concentrer sur les tâches banales, ce qui se traduit le plus souvent par l'ajout de \diceblack à \diceblack \diceblack \diceblack aux tests de compétence. \\
 		\hline 
 		09 -- 16 & \textbf{Trahison} : soit le personnage est victime d'une trahison soit c'est le traitre lui-même. \\
 		\hline 
@@ -197,56 +212,9 @@
 	\end{tabular}
 \end{center}
 
-\begin{tabular}{|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
-% \begin{tabular}{|p{3cm}|c|c|c|c|c|c|}
-	\hline 
-	\rowcolor{DarkRed} & \centering {\textcolor{PureWhite}{\small \textbf{Pierre}}} & \centering {\textcolor{PureWhite}{\small \textbf{Féodal}}} & \centering {\textcolor{PureWhite}{\small \textbf{Industriel}}} & \centering {\textcolor{PureWhite}{\small \textbf{Atomique}}} & \centering {\textcolor{PureWhite}{\small \textbf{Information}}} & \centering {\textcolor{PureWhite}{\small \textbf{Espace}}} \tabularnewline
-	\hline
-	\textbf{Low Tech} (2) &  &  &  &  &  &  \\ 
-	\leftskip=0.5cm
-	\textit{Offre} \par \textit{Demande} & \centering M/\numprint{3300} \par H/\numprint{3465} & \centering H/\numprint{3135} \par TH/\numprint{3630} & \centering H/\numprint{3135} \par M/\numprint{3300} & \centering M/\numprint{3300} \par M/\numprint{3300} & \centering B/\numprint{3465} \par B/\numprint{3135} & \centering B/\numprint{3465} \par B/\numprint{3135} \tabularnewline 
-	\hline 
-	\leftskip=0cm
-	\textbf{Mid Tech} (1) &  &  &  &  &  &  \\ 
-	\leftskip=0.5cm
-	\textit{Offre} \par \textit{Demande} & \centering --/-- \par TB/\numprint{4860} & \centering --/-- \par B/\numprint{5130} & \centering M/\numprint{5400} \par H/\numprint{5670} & \centering H/\numprint{5130} \par M/\numprint{5400} & \centering H/\numprint{5130} \par M/\numprint{5400} & \centering M/\numprint{5400} \par B/\numprint{5130} \tabularnewline 
-	\hline 
-	\leftskip=0cm
-	\textbf{High Tech} (0,5) &  &  &  &  &  &  \\ 
-	\leftskip=0.5cm
-	\textit{Offre} \par \textit{Demande} & \centering --/-- \par TB/\numprint{5400} & \centering --/-- \par TB/\numprint{5400} & \centering --/-- \par M/\numprint{6000} & \centering --/-- \par H/\numprint{6300} & \centering M/\numprint{6000} \par M/\numprint{6000} & \centering H/\numprint{5700} \par B/\numprint{5700} \tabularnewline 
-	\hline 
-	\leftskip=0cm
-	\textbf{Métaux} (10) &  &  &  &  &  &  \\ 
-	\leftskip=0.5cm
-	\textit{Offre} \par \textit{Demande} & \centering --/-- \par B/\numprint{2280} & \centering --/-- \par M/\numprint{2400} & \centering B/\numprint{2520} \par TH/\numprint{2640} & \centering M/\numprint{2400} \par H/\numprint{2520} & \centering H/\numprint{2280} \par H/\numprint{2520} & \centering TH/\numprint{2160} \par M/\numprint{2400} \tabularnewline 
-	\hline 
-	\leftskip=0cm
-	\textbf{Minéraux} (5) &  &  &  &  &  &  \\ 
-	\leftskip=0.5cm
-	\textit{Offre} \par \textit{Demande} & \centering TB/\numprint{1650} \par TB/\numprint{1350} & \centering B/\numprint{1575} \par B/\numprint{1425} & \centering B/\numprint{1575} \par TH/\numprint{1650} & \centering M/\numprint{1500} \par H/\numprint{1575} & \centering M/\numprint{1500} \par M/\numprint{1500} & \centering M/\numprint{1500} \par B/\numprint{1425} \tabularnewline 
-	\hline 
-	\leftskip=0cm
-	\textbf{Luxe} (var) &  &  &  &  &  &  \\ 
-	\leftskip=0.5cm
-	\textit{Offre} \par \textit{Demande} & \centering TB/110\% \par M/100\% & \centering B/105\% \par M/100\% & \centering B/105\% \par M/100\% & \centering M/100\% \par M100\% & \centering H/95\% \par M/100\% & \centering TH/90\% \par M/100\% \tabularnewline 
-	\hline 
-	\leftskip=0cm
-	\textbf{Nourriture} (0,5) &  &  &  &  &  &  \\ 
-	\leftskip=0.5cm
-	\textit{Offre} \par \textit{Demande} & \centering B/\numprint{1890} \par H/\numprint{1890} & \centering M/\numprint{1800} \par M/\numprint{1800} & \centering H/\numprint{1710} \par M/\numprint{1800} & \centering M/\numprint{1800} \par M/\numprint{1800} & \centering B/\numprint{1890} \par M/\numprint{1800} & \centering M/\numprint{1800} \par B/\numprint{1710} \tabularnewline
-	\hline 
-	\leftskip=0cm
-	\textbf{Médical} (0,5) &  &  &  &  &  &  \\ 
-	\leftskip=0.5cm
-	\textit{Offre} \par \textit{Demande} & \centering TB/\numprint{4620} \par M/\numprint{4200} & \centering TB/\numprint{4620} \par H/\numprint{4410} & \centering B/\numprint{4410} \par H/\numprint{4410} & \centering M/\numprint{4200} \par M/\numprint{4200} & \centering H/\numprint{3990} \par M/\numprint{4200} & \centering H/\numprint{3990} \par B/\numprint{3990} \tabularnewline
-	\hline 
-\end{tabular} 
-
 \section*{Tableau spécial}
 \renewcommand{\arraystretch}{1.5}
 \begin{tabular}{|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
-% \begin{tabular}{|p{3cm}|c|c|c|c|c|c|}
 	\hline 
 	\rowcolor{DarkRed} & \centering {\textcolor{PureWhite}{\small \textbf{Pierre}}} & \centering {\textcolor{PureWhite}{\small \textbf{Féodal}}} & \centering {\textcolor{PureWhite}{\small \textbf{Industriel}}} & \centering {\textcolor{PureWhite}{\small \textbf{Atomique}}} & \centering {\textcolor{PureWhite}{\small \textbf{Information}}} & \centering {\textcolor{PureWhite}{\small \textbf{Espace}}} \tabularnewline
 	\hline
@@ -308,21 +276,21 @@
 	\end{tabular}
 	\vspace{0.5cm} % 0,5cm between two tables
 	\par % needed for the space to work
-	\begin{tabular}[b]{|p{5cm}|p{1cm}|}
+	\begin{tabular}[b]{|l|c|}
 		\hline 
 		\multicolumn{2}{|c|}{\cellcolor{DarkRed} \textbf{{\large \textcolor{PureWhite}{Négociation}}}} \\ 
 		\hline 
-		{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_triomphe_triumph} \includegraphics[height=\fontcharht\font`\B]{../img/result_triomphe_triumph}} & $-50\%$ \\ 
+		\dicetriumph \dicetriumph & $-50\%$ \\ 
 		\hline 
-		{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_triomphe_triumph}} & $-20\%$ \\ 
+		\dicetriumph & $-20\%$ \\ 
 		\hline 
-		Pour chaque {\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_succes_success}} ou {\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_avantage_advantage}} restant & $-5\%$ \\ 
+		Pour chaque \dicesuccess ou \diceadvantage restant & $-5\%$ \\ 
 		\hline 
-		Pour chaque {\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_echec_failure}} ou {\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_menace_threat}} restant & $+5\%$ \\  
+		Pour chaque \dicefailure ou \dicethreat restant & $+5\%$ \\  
 		\hline 
-		{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_desastre_despair}} & $+50\%$ \\ 
+		\dicedespair & $+50\%$ \\ 
 		\hline 
-		{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_desastre_despair} \includegraphics[height=\fontcharht\font`\B]{../img/result_desastre_despair}} & $+100\%$ \\ 
+		\dicedespair \dicedespair & $+100\%$ \\ 
 		\hline 
 	\end{tabular} 
 \end{center}

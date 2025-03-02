@@ -25,10 +25,33 @@
 \definecolor{DarkGold}{HTML}{a48e3b}
 \definecolor{LightGrey}{HTML}{c2c2c2}
 
+%% Dices
+\newcommand{\diceblack}{\hspace{0.1cm}{\Large\includegraphics[height=\fontcharht\font`\B]{../img/dice_black}}\hspace{0.1cm}}
+\newcommand{\diceblue}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_blue}}\hspace{0.1cm}}
+\newcommand{\dicegreen}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_green}}\hspace{0.1cm}}
+\newcommand{\dicepurple}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}}\hspace{0.1cm}}
+\newcommand{\dicered}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_red}}\hspace{0.1cm}}
+\newcommand{\diceyellow}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_yellow}}\hspace{0.1cm}}
+\newcommand{\diceadvantage}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_avantage_advantage}}\hspace{0.1cm}}
+\newcommand{\dicedespair}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_desastre_despair}}\hspace{0.1cm}}
+\newcommand{\dicefailure}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_echec_failure}}\hspace{0.1cm}}
+\newcommand{\dicethreat}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_menace_threat}}\hspace{0.1cm}}
+\newcommand{\dicesuccess}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_succes_success}}\hspace{0.1cm}}
+\newcommand{\dicetriumph}{\hspace{0.1cm}{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_triomphe_triumph}}\hspace{0.1cm}}
+
 \sectionfont{\color{DarkGreen}}
 \subsectionfont{\color{DarkRed}}
 \subsubsectionfont{\color{DarkGold}}
 
+\makeatletter
+\newcount\my@repeat@count
+\newcommand{\myrepeat}[2]{%
+  \begingroup
+  \my@repeat@count=\z@
+  \@whilenum\my@repeat@count<#1\do{#2\advance\my@repeat@count\@ne}%
+  \endgroup
+}
+\makeatother
 
 \begin{document}
 
@@ -171,21 +194,21 @@ Enfin, voici une idée du coût de la vie dans la galaxie :
 
 \section*{Autres tables}
 \begin{multicols}{2}
-	\begin{tabular}[b]{|p{5cm}|p{1cm}|}
+	\begin{tabular}[b]{|p{5cm}|p{1.5cm}|}
 		\hline 
 		\multicolumn{2}{|c|}{\cellcolor{DarkRed} \textbf{{\large \textcolor{PureWhite}{Négociation}}}} \\ 
 		\hline 
-		{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_triomphe_triumph} \includegraphics[height=\fontcharht\font`\B]{../img/result_triomphe_triumph}} & $-50\%$ \\ 
+		\dicetriumph \dicetriumph & $-50\%$ \\ 
 		\hline 
-		{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_triomphe_triumph}} & $-20\%$ \\ 
+		\dicetriumph & $-20\%$ \\ 
 		\hline 
-		Pour chaque {\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_succes_success}} ou {\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_avantage_advantage}} restant & $-5\%$ \\ 
+		Pour chaque \dicesuccess ou \diceadvantage restant & $-5\%$ \\ 
 		\hline 
-		Pour chaque {\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_echec_failure}} ou {\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_menace_threat}} restant & $+5\%$ \\  
+		Pour chaque \dicefailure ou \dicethreat restant & $+5\%$ \\  
 		\hline 
-		{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_desastre_despair}} & $+50\%$ \\ 
+		\dicedespair & $+50\%$ \\ 
 		\hline 
-		{\Large \includegraphics[height=\fontcharht\font`\B]{../img/result_desastre_despair} \includegraphics[height=\fontcharht\font`\B]{../img/result_desastre_despair}} & $+100\%$ \\ 
+		\dicedespair \dicedespair & $+100\%$ \\ 
 		\hline 
 	\end{tabular} 
 	\begin{tabular}{|c|c|c|}
@@ -210,29 +233,29 @@ Enfin, voici une idée du coût de la vie dans la galaxie :
 	\hline 
 	\cellcolor{DarkGold}\textbf{Population} & \cellcolor{DarkGold}\textbf{Difficulté de base} \\ 
 	\hline 
-	Élevée & {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
+	Élevée & \myrepeat{1}{\dicepurple} \\ 
 	\hline 
-	Importante & {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
+	Importante & \myrepeat{2}{\dicepurple} \\ 
 	\hline 
-	Moyenne & {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
+	Moyenne & \myrepeat{3}{\dicepurple} \\ 
 	\hline 
-	Faible & {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
+	Faible & \myrepeat{4}{\dicepurple} \\ 
 	\hline 
-	Très faible & {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
+	Très faible & \myrepeat{5}{\dicepurple} \\ 
 	\hline 
 	\cellcolor{DarkGold}\textbf{Conditions} & \cellcolor{DarkGold}\textbf{Modificateur de difficulté} \\ 
 	\hline 
-	Présence impériale légère/inexistante & {\Large -- \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
+	Présence impériale légère/inexistante & -- \myrepeat{2}{\dicepurple} \\ 
 	\hline 
 	Présence impériale normale & --- \\ 
 	\hline 
-	Présence impériale importante &  {\Large + \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
+	Présence impériale importante &  + \myrepeat{2}{\dicepurple} \\ 
 	\hline 
-	Gouvernement corrompu/laxiste & {\Large -- \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
+	Gouvernement corrompu/laxiste & -- \myrepeat{2}{\dicepurple} \\ 
 	\hline 
 	Gouvernement standard & --- \\ 
 	\hline 
-	Gouvernement répressif & {\Large + \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} {\Large \includegraphics[height=\fontcharht\font`\B]{../img/dice_purple}} \\ 
+	Gouvernement répressif & + \myrepeat{2}{\dicepurple} \\ 
 	\hline 
 \end{tabular}
 
