@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\chead{Désastres}
+\usepackage{multicol}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+%\setmainfont[Mapping=tex-text]{Sitka Display}
+\usepackage[small,sf,bf]{titlesec}
+
+\usepackage{graphicx}
+\usepackage{xcolor, colortbl}
+\usepackage{sectsty}
+
+\definecolor{DarkGreen}{HTML}{384d3e}
+\definecolor{PureWhite}{HTML}{FFFFFF}
+\definecolor{DarkRed}{HTML}{6e272d}
+\definecolor{DarkGold}{HTML}{a48e3b}
+
+\sectionfont{\color{DarkGreen}}
+\subsectionfont{\color{DarkRed}}
+\subsubsectionfont{\color{DarkGold}}
+
+\begin{document}
+
+\title{\vspace{-0.5cm}{\Huge Désastres} \vspace{-1cm}}
+
+\date{}
+
+\maketitle
+
+\renewcommand{\arraystretch}{1.4}
+
+\begin{center}
+	\begin{tabular}{|p{1.5cm}|p{15cm}|}
+		\hline 
+		\cellcolor{DarkRed} {\large \textcolor{PureWhite}{\textbf{Roll}}} & \cellcolor{DarkRed} {\large \textcolor{PureWhite}{\textbf{Despair}}} \\
+		\hline 
+		01 -- 10 & L’arme est à court de munitions. \\
+		\hline
+		11 -- 20 & Changement environnemental entraînant un dé/plusieurs dés de malus, ex. : les lumières s’éteignent, une tempête de sable soudaine, perte de gravité, un tremblement de terre, de la fumée. \\
+		\hline
+		21 -- 30 & Ajouter un sbire supplémentaire au combat. \\
+		\hline
+		31 -- 40 & Le PJ trébuche et fait tomber son arme, qui atterrit aux pieds d’un ennemi hors de sa portée. \\
+		\hline
+		41 -- 50 & L’arme s’enraye, les munitions doivent être remplacées, l’arme subit des dégâts (briseur 1). \\
+		\hline
+		51 -- 60 & Ajouter un nouveau groupe de sbires au combat. \\
+		\hline
+		61 -- 65 & Changement environnemental extrême entraînant des dégâts aux PJ (test de Résilience pour annuler/réduire l’effet), ex. : une explosion, un incendie soudain, un éboulement, l’effondrement d’une plateforme/d’un bâtiment, une décompression brutale de l’atmosphère d’un vaisseau. \\
+		\hline
+		66 -- 70 & Une nouvelle faction arrive, ex. : police, impériaux, CorSec, etc., créant un combat à trois camps. \\
+		\hline
+		71 -- 80 & Une voie d’avancée ou de retraite pour les PJ est bloquée, ex. : un turbolift tombe en panne, un pont s’effondre, des portes se ferment. \\
+		\hline
+		81 -- 90 & L’arme se brise et doit être réparée, elle subit également des dégâts (briseur 3). \\
+		\hline
+		91 -- 99 & Ajouter un nouvel adversaire Rival. \\
+		\hline
+		100/00 & Lancez deux fois et combinez les résultats. \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\end{document}
