@@ -1,0 +1,640 @@
+\documentclass[hidelinks]{article}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{graphicx}
+\graphicspath{ {./img/} }
+
+\begin{document}
+
+\title{\vspace{-0.5cm}{\Huge Ansible \\[1ex] \LARGE Gérez la configuration de vos serveurs et le déploiement de vos applications (3e édition)} \vspace{-1cm}}
+
+\author{}
+
+\maketitle
+\clearpage
+
+% table of content
+\tableofcontents
+\clearpage
+
+\section{Introduction}
+\paragraph{}
+Ce livre sur \textbf{Ansible} s'adresse aux \textbf{administrateurs de systèmes Unix} qui souhaitent découvrir les différentes fonctionnalités spécifiques de cet outil \textbf{DevOps} permettant la \textbf{configuration centralisée de serveurs et d'applications}. À l'aide d'exemples concrets, l'auteur apporte au lecteur les connaissances nécessaires pour bien comprendre l'intérêt de son utilisation.
+
+\paragraph{}
+Certains prérequis sur le langage \textbf{YAML} ou l'utilisation du protocole \textbf{SSH} sont un plus pour une utilisation efficace d'Ansible. Dans les premiers chapitres, l'auteur aide toutefois le lecteur à les acquérir pour qu'il puisse tirer le meilleur profit de la lecture du livre.
+
+\paragraph{}
+Les chapitres qui suivent traitent des différents mécanismes d'Ansible avec une approche de difficulté progressive. Les premiers mécanismes permettent ainsi d'administrer de façon classique les serveurs (Unix ou Windows) alors que les suivants nécessitent des notions plus avancées, notamment sur la programmation Python. Le lecteur y découvre alors comment \textbf{créer un inventaire}, comment \textbf{réinjecter des informations} provenant de sources existantes (ESX, AWS, Docker\dots) ou comment \textbf{créer des playbooks}. La création de \textbf{rôles Ansible} est également traitée ainsi que quelques bonnes pratiques à suivre (analyse de code et test avec Molecule à l'aide de Podman ou Docker).
+\paragraph{}
+À côté des notions purement orientées Ansible, certains chapitres sont consacrés au \textbf{déroulement du déploiement d'une application} MediaWiki. Le lecteur étudie ainsi les problématiques de \textbf{parallélisation des tâches}, l'introduction d'un \textbf{répartiteur de charge} Haproxy et \textbf{le lancement en séquence des opérations} permettant de réaliser les mises à jour avec un impact minimal (rolling update). L'\textbf{optimisation des tâches} sera également un point important avec la mise en place de Mitogen.
+
+\paragraph{}
+La suite du livre détaille plus particulièrement la \textbf{personnalisation d'Ansible}. La restitution d'informations (\textbf{mécanismes de callback et découverte de ARA}), l'\textbf{écriture de modules} pour la gestion d'opérations, les \textbf{filtres Jinja} ou encore la \textbf{création d'actions} sont ainsi étudiés.
+
+\paragraph{}
+Enfin, l'auteur présente dans les derniers chapitres la problématique de la \textbf{création de machines virtuelles}, classiques (via l'hyperviseur ESX/VMware/vCenter) ou dans le cloud (avec AWS), l'\textbf{utilisation de containers} Podman/Docker avec Ansible, le pilotage d'applications dans un cluster Kubernetes ainsi que la création d'un opérateur.
+
+\paragraph{}
+Auteur : \underline{Yannig PERRÉ}
+
+Administrateur système depuis de nombreuses années, \textbf{Yannig PERRÉ} est aujourd'hui spécialiste de la gestion d'applications à l'aide de conteneurs. Il associe naturellement à ce savoir-faire différents outils pour gérer les problématiques d'installation, de résilience, de scalabilité, de surveillance ainsi que de publication des applications sur Internet. Associée à sa longue expérience du monde open source, cette expertise lui perme de transmettre aux lecteurs des livres réellement efficaces sur la mise en \oe{}uvre d'Ansible, Kubernetes ou encore Prometheus et Grafana.
+
+\section{Avant-propos : D'où vient le terme DevOps ?}
+Au début de l'informatique, les applications étaient simples et pouvaient être gérées directement par les personnes en charge du développement.
+
+Avec le temps, les applications se sont complexifiées et, afin d'organiser le travail et de rationaliser les coûts, des équipes ont été créées avec des spécialisations différentes. Ce découpage des tâches a débouché sur l'organisation traditionnelle que l'on retrouve actuellement en informatique : d'un côté, les développeurs (devs) et d'un autre les exploitants ou opérateurs (ops est une contraction courante pour désigner les opérateurs en anglais).
+
+Ces équipes ont des objectifs antagonistes. Si vous prenez le cas de l'exploitation des plates-formes, pour l'exploitation, il s'agira d'un point indispensable pour assurer la pérennité de l'application. Pour un développeur, il s'agit au mieux d'un aspect sans intérêt, au pire d'une perte de temps.
+
+Inversement, les changements seront mal perçus par les équipes d'exploitation puisque source d'instabilité, alors que pour les développeurs il s'agira de l'essence même de leur travail.
+
+L'arrivée de l'agilité en entreprise va encore exacerber ce conflit. En effet, les équipes de développement sont déjà confrontées à l'application de ces méthodes, ce qui sera beaucoup plus rare du côté de l'exploitation.
+
+Dans ce contexte, la mouvance DevOps a émergé afin de réconcilier ces équipes. Le terme lui-même est la contraction de Dev et Ops et a été inventé par Patrick Debois en octobre 2009.
+
+\section{Les premiers produits DevOps}
+Les premiers produits répondant aux impératifs de flexibilité de cette nouvelle organisation étaient déjà existants sur le marché. On peut citer notamment des produits comme Puppet, Chef, Salt ou BladeLogic. Malgré leur qualité indéniable, ces produits avaient tout de même quelques défauts :
+\begin{itemize}
+    \item Ils demandaient un savoir-faire très spécifique.
+    \item Il fallait absolument installer des agents sur les serveurs à gérer.
+    \item Il n'est pas possible de gérer l'installation initiale de l'agent.
+    \item Enfin, les méthodes d'administration classiques à base de SSH étaient complètement ignorées.
+\end{itemize}
+
+Pour résumer, vous deviez installer des agents supplémentaires, une infrastructure permettant de les gérer, et vous deviez reprendre totalement votre savoir-faire dans un langage très orienté développeur.
+
+\paragraph{}
+Ansible est arrivé un peu après ces pionniers pour répondre justement à ce besoin de remettre les méthodes classiques au goût du jour. En effet, avec Ansible, vous pourrez vous appuyer sur vos méthodes d'exploitation existantes (SSH, WinRM, Docker, API, etc.) :
+\begin{itemize}
+    \item Pas d'agent à installer sur les machines distantes, il faut juste un interpréteur Python.
+    \item Pas d'infrastructure à installer pour gérer les machines, vous pouvez tout faire depuis un poste quelconque avec les accès ad hoc.
+\end{itemize}
+
+\section{Cibles et objectifs de l'ouvrage}
+Ansible est un logiciel qui s'adresse à des personnes disposant de connaissances en administration système Unix ou Windows (notamment dans tout ce qui est gestion de clé SSH) et ayant optionnellement un background de développeur Python.
+
+Néanmoins, l'objectif du livre est de pouvoir être abordé par tout un chacun avec des premiers chapitres relativement simples à aborder pour arriver sur des concepts plus poussés.
+
+\section{Prérequis techniques et ressources documentaires}
+
+\subsection{Prérequis techniques}
+Afin de pouvoir travailler, vous aurez besoin d'au moins une machine Linux (celle faisant tourner Ansible) ainsi que plusieurs machines virtuelles et/ou conteneurs sur lesquels vous aurez la main.
+
+Dans le cas où la personne serait bloquée sous Windows, le mécanisme de WSL permettra à l'utilisateur de pouvoir lancer des programmes Linux depuis Windows.
+
+\subsection{Ressources documentaires}
+Ce livre vient avec un ensemble d'exemples permettant au lecteur de se mettre en situation (installation de serveur Apache, MySQL, création de VM, etc.). Le code source des exemples est disponible pour le téléchargement et est regroupé par chapitre de la manière suivante :
+\begin{itemize}
+    \item Soit par sous-répertoires chapitre-XX dans le dépôt \url{https://github.com/EditionsENI/ansible}.
+    \item Soit par archives sous la forme chapitre-XX.tar.gz sur la page du livre sur le site des Éditions ENI.
+\end{itemize}
+
+Ces fichiers sont également disponibles sous la forme d'un dépôt git disponible à l'adresse suivante : \url{https://github.com/EditionsENI/ansible}.
+
+Ansible est un produit qui évolue toujours. N'hésitez donc pas à suivre les dernières évolutions en vous abonnant au groupe de discussion à l'URL ci-après : \url{https://groups.google.com/forum/#!forum/ansible-project}.
+
+Vous pouvez également vous rendre sur la page GitHub du projet : \url{https://github.com/ansible/ansible}.
+
+Le site \url{http://docs.ansible.com/} est également une source d'informations notamment sur 'utilisation des modules Ansible.
+
+\section{Présentation générale}
+
+Ce livre est une seconde édition et est composé de dix-sept chapitres. Chaque chapitre évoque une fonctionnalité spécifique d'Ansible et peut être approché de façon autonome si vous avez déjà quelques connaissances sur le produit. Vous aborderez tous les aspects du produit en passant par l'installation d'Ansible, la création de playbooks simples pour enfin déboucher sur l'écriture de plugin en Python.
+
+Les exemples de ce livre ont été testés sur des versions récentes de CentOS 7 et Ubuntu. Ces machines virtuelles tournent sous VirtualBox. Vous pouvez bien sûr utiliser n'importe quel mécanisme de virtualisation (ESX, XenServer, OpenStack, Amazon).
+
+À noter que dans le cas où vous auriez des difficultés à vous fournir en machines virtuelles classiques, et si vous êtes habitué à l'utilisation de Docker ou Podman, plusieurs chapitres abordent différentes techniques permettant de simuler une infrastructure classique à l'aide de conteneurs.
+
+Au niveau des nouveautés de cette édition, l'accent a surtout été porté sur les sujets suivants :
+\begin{itemize}
+    \item Un nouveau chapitre dédié à l'administration de machines Windows.
+    \item Un chapitre dédié à l'optimisation des lancements de playbook ainsi que la découverte de Mitogen.
+    \item Les techniques de tests des playbooks créés avec Ansible.
+    \item Enfin le pilotage de ressources dans un cluster Kubernetes avec la création d'un opérateur.
+\end{itemize}
+
+\subsection{Les prérequis}
+Les chapitres \hyperref[sec:Démarrer avec Ansible]{\textbf{Démarrer avec Ansible}} et \hyperref[sec:Utilisation d'Ansible]{\textbf{Utilisation d'Ansible}} sont là pour aider le lecteur à acquérir certains prérequis, comme par exemple le langage YAML, l'utilisation de SSH et notamment la génération et les échanges de clé. L'utilisation de Git sera également abordée afin de parler de quelques bonnes pratiques à adopter sur l'écriture des playbooks Ansible.
+
+\subsection{L'utilisation d'Ansible}
+Les chapitres \hyperref[sec:Découverte de l'inventaire]{\textbf{Découverte de l'inventaire}}, \hyperref[sec:Inventaires-notions avancées]{\textbf{Inventaires : notions avancées}}, \hyperref[sec:Fonctionnement d'un playbook]{\textbf{Fonctionnement d'un playbook}}, \hyperref[sec:Introduction à la notion de rôles]{\textbf{Introduction à la notion de rôles}} et \hyperref[sec:Playbooks, rôles et notions avancées]{\textbf{Playbooks, rôles et notions avancées}} sont là pour aborder les différents mécanismes d'Ansible sans avoir à connaître ses rouages internes. Vous y trouverez comment créer un inventaire Ansible (chapitre \hyperref[sec:Découverte de l'inventaire]{\textbf{Découverte de l'inventaire}}), réinjecter des informations provenant de sources existantes ESX, AWS, Docker, etc. (chapitre \hyperref[sec:Inventaires-notions avancées]{\textbf{Inventaires : notions avancées}}), créer des playbooks (chapitres \hyperref[sec:Administration Windows]{\textbf{Administration Windows}}, \hyperref[sec:Fonctionnement d'un playbook]{\textbf{Fonctionnement d'un playbook}}, \hyperref[sec:Introduction à la notion de rôles]{\textbf{Introduction à la notion de rôles}} et \hyperref[sec:Playbooks, rôles et notions avancées]{\textbf{Playbooks, rôles et notions avancées}}) ainsi que des rôles Ansible (chapitres \hyperref[sec:Introduction à la notion de rôles]{\textbf{Introduction à la notion de rôles}} et \hyperref[sec:Playbooks, rôles et notions avancées]{\textbf{Playbooks, rôles et notions avancées}}) ainsi qu'à l'optimisation (chapitre \hyperref[sec:Stratégie d'exécution et optimisation]{\textbf{Stratégie d'exécution et optimisation}}).
+
+Les chapitres \hyperref[sec:Ansible - virtualisation et cloud]{\textbf{Ansible : virtualisation et cloud}} et \hyperref[sec:Tester Ansible avec docker]{\textbf{Tester Ansible avec Docker}} font le tour des modules à disposition du lecteur pour gérer les problématiques de création de machines virtuelles ESX ou AWS (chapitre \hyperref[sec:Ansible - virtualisation et cloud]{\textbf{Ansible : virtualisation et cloud}}) ou de conteneurs (chapitre \hyperref[sec:Tester Ansible avec docker]{\textbf{Tester Ansible avec Docker}}). Un dernier chapitre sera consacré à l'utilisation d'Ansible avec Kubernetes et notamment l'écriture d'un opérateur avec Ansible (\hyperref[sec:Pilotage de k8s à l'aide d'ansible]{\textbf{Pilotage de Kubernetes à l'aide d'Ansible}}).
+
+\subsection{La personnalisation d'Ansible}
+
+Enfin, les chapitres \hyperref[sec:Sortie Ansible et centralisation]{\textbf{Sortie Ansible et centralisation}}, \hyperref[sec:Écriture de modules]{\textbf{Écriture de modules}}, \hyperref[sec:Écriture de filtres jinja et mécanismes de lookup]{\textbf{Écriture de filtres Jinja et mécanismes de lookup}} et mécanisme de lookup et \hyperref[sec:Les actions Ansible]{\textbf{Les actions Ansible}} sont là pour comprendre comment fonctionne Ansible. La restitution d'informations (mécanisme de callback) dans le chapitre \hyperref[sec:Sortie Ansible et centralisation]{\textbf{Sortie Ansible et centralisation}}, l'écriture de modules pour la gestion d'opérations dans le chapitre \hyperref[sec:Écriture de modules]{\textbf{Écriture de modules}}, l'écriture de filtres Jinja dans le chapitre \hyperref[sec:Écriture de filtres jinja et mécanismes de lookup]{\textbf{Écriture de filtres Jinja et mécanismes de lookup}} et enfin la création de plugins action dans le chapitre \hyperref[sec:Les actions Ansible]{\textbf{Les actions Ansible}} sont présentés.
+
+\subsection{Conventions employées}
+Les conventions suivantes sont employées dans le livre :
+
+\textbf{Caractères gras} : désignent un fichier ou mettent en évidence certains passages.
+
+\texttt{Caractères à chasse fixe} : utilisés pour les exemples de code dans le texte.
+
+\texttt{\$ ./commande.sh} : désignent une commande à lancer.
+
+Le livre contient également énormément d'exemples de code source sous la forme suivante :
+\begin{verbatim}
+- name: "Create docker network" 
+  hosts: localhost 
+  gather_facts: no 
+  tasks: []
+\end{verbatim}
+
+\section{Démarrer avec Ansible : Objectifs du chapitre et prérequis}
+\label{sec:Démarrer avec Ansible}
+12
+
+\subsection{Contexte et prérequis}
+Ce chapitre aborde l'installation d'Ansible et quelques prérequis de sécurité autour de SSH.
+
+Par la suite, vous devrez disposer de quelques prérequis notamment  :
+\begin{itemize}
+    \item une machine Linux avec un interpréteur Python 2.7 minimum (recommandé Python 3.5) ;
+    \item être administrateur de cette dernière ou avoir des droits suffisants pour lancer des commandes.
+\end{itemize}
+
+L'installation d'Ansible est possible sur tous les types d'Unix du marché et notamment sous Mac OS X ou autre BSD. Attention toutefois aux effets de bord qui peuvent exister.
+
+Il est possible de réaliser une installation d'Ansible sous Windows en faisant appel à Cygwin ou via le Linux Subsystem de Microsoft. Toutefois, les résultats peuvent varier. Si vous n'avez pas d'autre choix, il existe des solutions basées sur des machines virtuelles, ce qui aura l'avantage d'éviter les mésaventures.
+
+Dans le cas où vous auriez des difficultés à vous fournir en VM, il est possible de passer par d'autres solutions et notamment des conteneurs Docker. Cette technique est abordée dans l'avant-dernier chapitre de ce livre.
+
+\subsection{Version de Python}
+Le support de Python 2 s'est arrêté depuis le 31 décembre 2019. En conséquence, il est fortement recommandé que la machine qui contrôle les déploiements utilise une version Python 3.5 ou supérieure. C'est le cas de toutes les distributions récentes Red Hat, Debian ou Ubuntu.
+
+\subsection{Environnement de travail}
+Par la suite, le livre fera mention d'une machine rec-apache-1. Cette dernière représente une machine qui servira pour réaliser les différents tests. Charge au lecteur de changer ce nom par celui d'une machine à sa disposition.
+
+À noter que si vous n'avez pas de DNS, il est tout à fait possible de passer par une adresse IP.
+
+\subsection{Fichiers téléchargeables}
+Vous pouvez récupérer les exemples des répertoires inventaires et variables sur le repository GitHub suivant : \url{https://github.com/EditionsENI/ansible}
+
+Vous pouvez également récupérer ces fichiers dans l'archive \textbf{chapitre-01.tar.gz} depuis la page Informations générales.
+
+\section{Installation d'Ansible}
+\label{sec:Installation d'Ansible}
+15
+\subsection{Contexte}
+L'installation d'Ansible peut se faire de plusieurs manières :
+\begin{itemize}
+    \item Par l'intermédiaire des packages de votre système.
+    \item À l'aide de l'outil pip de Python (éventuellement combiné avec virtualenv).
+    \item Par l'utilisation des archives contenant le code source d'Ansible.
+    \item Ou enfin, en interprétant directement le code source en provenance de Git.
+\end{itemize}
+
+\subsection{Installation derrière un proxy}
+Si vous êtes derrière un proxy, il faudra exporter les variables \texttt{http\_proxy}, \texttt{https\_proxy} et \texttt{ftp\_proxy} avec la valeur suivante : \texttt{http://mon-proxy:mon-port}. Dans le cas où il faudrait vous identifier, il faudra changer la déclaration de votre proxy pour la valeur suivante : \texttt{http://identifiant:mdp@mon-proxy:port}.
+
+Ces variables sont valables aussi bien pour les utilitaires \texttt{apt} (Debian), \texttt{yum} (Red Hat) ou \texttt{pip} (packaging propre à Python). Ci-dessous les instructions à lancer dans votre terminal pour cette prise en compte :
+\begin{verbatim}
+$ export http_proxy=http://proxy:3128 
+$ export https_proxy=http://proxy:3128 
+$ export ftp_proxy=http://proxy:3128
+\end{verbatim}
+
+\subsection{Installation via les packages système}
+Il existe deux grandes familles de packages dans les distributions Linux : \texttt{apt} pour les dérivés de Debian/Ubuntu et \texttt{yum} (RHEL, CentOS ou Fedora).
+\subsubsection{Installation sous Debian/Ubuntu}
+Sous Debian, l'installation peut se faire à l'aide d'\texttt{apt} suivi de l'option install et du nom du package. Dans le cas d'Ansible, la commande à lancer sera la suivante :
+\begin{verbatim}
+$ sudo apt install ansible
+\end{verbatim}
+
+Vérifier que la version récupérée est suffisamment récente (cf. section Vérification de la version d'Ansible).
+
+\subsubsection{Installation sur RHEL, CentOS ou Fedora}
+Avec \texttt{yum}, elle se fera en deux étapes :
+
+\paragraph{Activation des sources EPEL (\textit{Extra Package Enterprise Linux})}
+\begin{verbatim}
+$ sudo yum install epel-release
+\end{verbatim}
+
+\paragraph{Installation d'Ansible}
+\begin{verbatim}
+$ sudo yum install ansible
+\end{verbatim}
+
+Au moment de l'écriture de ces lignes, Ansible n'est pas dans les sources officielles de Red Hat, d'où sa présence dans les sources EPEL. En revanche, vous disposerez de la dernière version stable.
+
+\subsection{Installation via pip}
+\label{subsec:Installation via pip}
+
+Dans le cas où le package que vous obtenez par votre système est trop ancien (ce qui peut arriver avec Debian par exemple) ou si vous voulez faire appel à un autre mécanisme de packaging (Gentoo, Slackware, etc.), il est également possible de passer par l'utilitaire \texttt{pip} (\texttt{pip3} pour utiliser la version de Python 3).
+
+Sous Debian, l'installation de \texttt{pip3} se fait à l'aide de la commande \texttt{apt} suivie de l'option \texttt{install} et du nom du package python-pip3 :
+\begin{verbatim}
+$ sudo apt install python3-pip
+\end{verbatim}
+
+Une fois pip installé, il est possible de lancer l'installation d'Ansible avec la commande suivante :
+\begin{verbatim}
+$ sudo pip install ansible
+\end{verbatim}
+
+Dans le cas où vous auriez déjà une version installée que vous voudriez mettre à jour, il faudra ajouter l'option \texttt{--upgrade} :
+
+\begin{verbatim}
+$ sudo pip install --upgrade ansible
+\end{verbatim}
+
+Sous Red Hat ou CentOS, il est également possible d'installer Ansible par pip. Pour cela, il faut :
+Installer pip avec \texttt{yum} :
+\begin{verbatim}
+$ yum install python3-pip
+\end{verbatim}
+
+L'instruction fonctionne de la même façon avec \texttt{dnf} :
+\begin{verbatim}
+$ dnf install python3-pip
+\end{verbatim}
+
+Lancer l'installation d'Ansible avec pip :
+
+\begin{verbatim}
+$ pip3 install ansible
+\end{verbatim}
+
+Auparavant Ansible était également disponible sous forme de paquets. Ces derniers ne sont plus mis à jour depuis 2021 avec la version 2.9. Cette méthode d'installation est donc déconseillée.
+
+\subsection{Utilisation de virtualenv}
+Une dernière méthode d'installation d'Ansible (qui sera privilégiée par la suite) est de passer par l'outil \texttt{virtualenv} de Python. Ce mécanisme offre plusieurs avantages :
+\begin{itemize}
+    \item Il permet de faire cohabiter très facilement plusieurs versions d'Ansible.
+    \item Il utilise le mécanisme de packaging pip.
+    \item Il permet de réaliser l'installation sans les droits administrateur.
+\end{itemize}
+
+En fonction du type de distribution, l'installation de virtualenv diffère légèrement. Ci-dessous la méthode pour RHEL/CentOS/Fedora :
+\begin{verbatim}
+$ yum install python3-virtualenv
+\end{verbatim}
+
+Ci-dessous celle à utiliser pour l'installer sous Debian/Ubuntu :
+\begin{verbatim}
+$ apt install python3-virtualenv virtualenv
+\end{verbatim}
+
+Ceci fait, il faut ensuite créer un environnement Python virtuel. Pour cela, lancez la commande \texttt{virtualenv} suivie des options suivantes :
+\begin{itemize}
+    \item \texttt{--python=python3} pour spécifier la version de Python à utiliser ;
+    \item \textbf{/tmp/ansible} pour spécifier le répertoire de travail.
+\end{itemize}
+Ci-dessous un exemple de lancement avec la version 3 de Python ainsi que le répertoire de travail /tmp/ansible :
+\begin{verbatim}
+$ virtualenv --python=python3 /tmp/ansible
+\end{verbatim}
+
+Cet outil s'occupera alors de déposer une copie de travail indépendante dans le répertoire \textbf{/tmp/ansible}. Ci-dessous un exemple d'exécution de cette commande :
+
+\begin{verbatim}
+Running virtualenv with interpreter /usr/bin/python3
+Using base prefix '/usr' 
+New python executable in /tmp/ansible/bin/python3 
+Also creating executable in /tmp/ansible/bin/python 
+Installing setuptools, pip, wheel...done. 
+.
+\end{verbatim}
+
+
+Ceci fait, reste à "activer" cet environnement à l'aide du script \texttt{bin/activate} présent dans le sous-répertoire de l'environnement virtuel. Pour cela, il est nécessaire de le sourcer dans l'environnement de l'utilisateur. Ci-dessous un exemple avec l'environnement se trouvant dans \textbf{/tmp/ansible} :
+\begin{verbatim}
+$ . /tmp/ansible/bin/activate
+\end{verbatim}
+
+Un bon moyen de savoir si l'on utilise un environnement virtuel est de regarder où se trouve le binaire Python avec la commande type. Ci-dessous le résultat pour l'environnement \textbf{/tmp/ansible} :
+
+\begin{verbatim}
+$ type python
+python is /tmp/ansible/bin/python
+\end{verbatim}
+
+L'interpréteur Python est bien dans le répertoire \textbf{/tmp/ansible}.
+L'installation d'Ansible quant à elle peut se faire avec pip comme vous l'avez vu dans la section \hyperref[subsec:Installation via pip]{\textbf{Installation via pip}}.
+
+\subsection{Vérification de la version d'Ansible}
+Vous avez installé Ansible ? Vous pouvez maintenant vérifier la version à l'aide de la commande suivante :
+\begin{verbatim}
+$ ansible --version
+\end{verbatim}
+
+Ci-dessous un exemple de sortie de cette commande (ici avec la version 2.9.2) :
+\begin{verbatim}
+ansible [core 2.12.10]
+config file = None 
+configured module search path = ['/home/yannig/.ansible/plugins/modules', '...'] 
+nsible python module location = 
+/home/yannig/.local/lib/python3.10/site-packages/ansible 
+ansible collection location = 
+/home/yannig/.ansible/collections:/usr/share/ansible/collections 
+executable location = /home/yannig/.local/bin/ansible 
+python version = 3.10.7 (main, Nov 24 2022, 19:45:47) [GCC 12.2.0]
+jinja version = 3.1.2 
+libyaml = True
+\end{verbatim}
+
+\section{le protocole SSH}
+\label{sec:le protocole SSH}
+23
+
+\subsection{À propos de SSH}
+Ansible est principalement conçu pour gérer des machines à l'aide du protocole SSH ou via des commandes lancées en local. Il est également possible de gérer d'autres types de machines, comme par exemple des systèmes Windows, des conteneurs Docker ou encore via des mécanismes d'isolation (chroot ou jail).
+
+Même s'il est possible de passer par des mots de passe pour se connecter aux machines Linux, il est fortement recommandé de passer par des clés SSH. La suite sera consacrée à la génération des clés SSH et à leur propagation sur les machines à administrer.
+
+\subsection{Clé publique et clé privée}
+La première chose à faire si vous n'en avez pas sera de générer une clé. Cette dernière est constituée de deux parties : la clé privée et la clé publique. Une propriété importante vient du fait qu'il est très facile d'obtenir la clé publique depuis la clé privée, mais qu'il est très difficile d'obtenir la clé privée à partir de la clé publique.
+
+La clé privée doit rester à tout prix secrète. En effet, elle permet à celui qui la possède de se connecter à vos machines. La clé publique, quant à elle, peut être connue de tous étant donné qu'elle ne sert qu'à donner des droits de connexion à un serveur.
+
+Ce couple de fichiers peut être comparé à un cadenas et sa clé : le cadenas ouvert représente la clé publique et la clé du cadenas représente la clé privée. Un cadenas fermé protège quelque chose et ne peut être ouvert que si on dispose de la clé du cadenas. Enfin, il est plus simple d'ouvrir un cadenas avec sa clé plutôt qu'en le cassant.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.3\textwidth]{img/ssh1.png}
+    \caption{Cadenas et clé}
+\end{figure}
+
+
+L'information est protégée par la clé publique. Le résultat ne peut être récupéré qu'avec la clé du cadenas.
+
+Pour continuer avec cette analogie, tout le monde peut attacher un vélo en se servant d'un cadenas (même si on n'en possède pas la clé). En revanche, une fois le verrou posé, il sera beaucoup plus simple de l'ouvrir avec la clé plutôt que sans.
+
+\subsection{Génération de la clé}
+La génération de la clé est déclenchée par la commande \texttt{ssh-keygen}. On peut lui passer les options suivantes :
+\begin{itemize}
+    \item Le type de clé à générer (rsa ou dsa) avec \texttt{-t [rsa|dsa]}.
+    \item L'emplacement où générer la clé avec \texttt{-f <emplacement-clé>}.
+    \item Une passphrase (phrase secrète) pour protéger la clé avec l'option \texttt{-N}.
+    \item Éventuellement la longueur de la clé (\texttt{-b 2048} pour une clé de 2 048 bits).
+\end{itemize}
+
+Si vous ne passez pas de paramètres à la commande, \texttt{ssh-keygen} produira une clé RSA et la commande demandera les choses suivantes :
+\begin{itemize}
+    \item L'emplacement de la clé (par défaut \textbf{HOME/.ssh/id_rsa}).
+    \item Une passphrase et la confirmation de la passphrase.
+\end{itemize}
+
+Ci-dessous un exemple de création de clé :
+
+\begin{verbatim}
+$ ssh-keygen
+Generating public/private rsa key pair.  
+Enter file in which to save the key (/home/deploy/.ssh/id_rsa): 
+Created directory '/home/deploy/.ssh'.  
+Enter passphrase (empty for no passphrase):   
+Enter same passphrase again:   
+Your identification has been saved in /home/deploy/.ssh/id_rsa. 
+Your public key has been saved in /home/deploy/.ssh/id_rsa.pub. 
+The key fingerprint is:  
+SHA256:vmP857AGZcX3DuH4U5z87ILXE6Y1bsebEnXhiSr459Y deploy@travail 
+The key's randomart image is:  
++---[RSA 2048]----+  
+|           .     |  
+|            o o. |  
+|           . ++++|  
+|          o ..o*=|  
+|        So  ...=o|  
+|       o.. . .o=+|  
+|       .o.o ..*=o|  
+|        +o.=oEo+*|  
+|       ..+*+..o++|  
++----[SHA256]-----+
+\end{verbatim}
+
+\subsection{Étapes de l'authentification}
+
+Il est important de comprendre comment fonctionne l'authentification par clé. Pour cela, la commande SSH procède à un certain nombre d'opérations :
+
+\begin{itemize}
+    \item Vérification de la signature du serveur distant. Si ce dernier n'est pas connu, l'utilitaire ssh proposera de stocker la chaîne présentée par le serveur.
+    \item Récupération des clés privées SSH présentes dans le répertoire .ssh (fichiers id_rsa ou id_dsa) de l'utilisateur et vérification des droits sur les fichiers.
+    \item Présentation des clés aux serveurs distants. Si une clé correspond à une entrée dans le fichier \textbf{~/.ssh/authorized_keys} distant, le serveur crée un challenge à résoudre par le client.
+    \item Le client résout le challenge (c'est d'ailleurs à ce moment qu'il faut saisir la passphrase de la clé SSH) et le renvoie au serveur : l'utilisateur est authentifié.
+\end{itemize}
+
+\subsection{Parc important de machines ou hébergement dans le cloud}
+
+Dans le cas de l'administration d'un parc important de machines (ou changeant souvent de clé SSH comme dans le cas de machines hébergées dans le cloud), il n'est pas faisable de maintenir la liste des signatures de machines distantes.
+
+La désactivation de ce mécanisme se fait à l'aide des options SSH suivantes :
+\begin{itemize}
+    \item Désactivation de la vérification stricte des clés SSH des machines distantes (StrictHostKeyChecking no).
+    \item Stockage des signatures de machines dans le fichier /dev/null (UserKnownHostsFile /dev/null).
+\end{itemize}
+
+Cette configuration se fait en alimentant le contenu du fichier \textbf{~/.ssh/config}. Ci-dessous le contenu de ce fichier avec ces deux options :
+
+\begin{verbatim}
+StrictHostKeyChecking no 
+UserKnownHostsFile /dev/null
+\end{verbatim}
+
+
+\subsection{Échange de clé par mot de passe}
+Dans la suite de l'exercice, les connexions SSH se feront avec l'utilisateur \texttt{root}. Dans le cas où il faudrait faire appel à un autre utilisateur (\texttt{deploy}, \texttt{admin}, etc.), faites l'échange de clé avec celui-ci. Le chapitre suivant sera consacré à gérer l'escalade de droit pour passer super utilisateur avec des mécanismes tel que sudo.
+
+Par la suite, la machine \textbf{rec-apache-1} sera administrée par clé SSH et vous disposerez du mot de passe de l'utilisateur \texttt{root}. Par conséquent, l'échange de clé se fera avec l'outil \texttt{ssh-copy-id} suivi du nom de la machine. Cet outil a pour fonction de prendre la clé publique SSH pour la déposer automatiquement sur la machine distante dans le fichier \textbf{~/.ssh/authorized_keys}.
+
+Il est également possible de faire précéder le nom de l'utilisateur avec lequel se connecter en utilisant une arobase ('@'). Ci-dessous un exemple d'échange de clé avec l'utilisateur \texttt{root} de la machine \textbf{rec-apache-1} :
+
+\begin{verbatim}
+$ ssh-copy-id root@rec-apache-1
+\end{verbatim}
+
+Dans le cas où la communication se ferait avec l'utilisateur \texttt{deploy}, la commande serait la suivante :
+\begin{verbatim}
+$ ssh-copy-id deploy@rec-apache-1
+\end{verbatim}
+
+Lors de la première connexion à une machine, \texttt{ssh-copy-id} demandera de faire confiance à la signature de cette dernière (sauf en cas de désactivation de cette vérification comme vu au cours du chapitre précédent) :
+
+\begin{verbatim}
+$ ssh-copy-id root@rec-apache-1  
+The authenticity of host 'rec-apache-1 (127.0.0.1)' can't be established. 
+ECDSA key fingerprint is SHA256:QPjmrxfQQERCRQ0SuYzBHvIdP+/1aOEQibnIkFoix2I. 
+Are you sure you want to continue connecting (yes/no)? yes  
+\end{verbatim}
+
+
+Le stockage de la signature se fait en entrant "yes". Les lignes suivantes apparaissent pour indiquer la clé trouvée et la recopie qui va être réalisée :
+
+\begin{verbatim}
+Warning: Permanently added 'rec-apache-1' (ECDSA) to the list of 
+known hosts. 
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: 
+"/home/deploy/.ssh/id_rsa.pub"  
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new 
+key(s), to filter out any that are already installed  
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if 
+you are prompted now it is to install the new keys 
+\end{verbatim}
+
+Saisissez le mot de passe de l'utilisateur (ici root) :
+
+\begin{verbatim}
+root@rec-apache-1's password:   
+
+Number of key(s) added: 1  
+    
+Now try logging into the machine, with:   "ssh 'root@rec-apache-1'" 
+and check to make sure that only the key(s) you wanted were added.
+\end{verbatim}
+
+La clé est maintenant en place. Comme le message vous y invite, il est maintenant possible de se connecter avec la commande \texttt{ssh <utilisateur>@rec-apache-1} pour s'assurer que l'échange de clé s'est bien passé :
+
+\begin{verbatim}
+$ ssh 'root@rec-apache-1' 
+Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-79-generic x86_64)  
+    
+* Documentation:  https://help.ubuntu.com  
+* Management:     https://landscape.canonical.com  
+* Support:        https://ubuntu.com/advantage  
+    
+9 paquets peuvent être mis à jour.  
+0 mise à jour de sécurité.  
+    
+Last login: Thu Jun  8 19:43:56 2017 from 127.0.0.1
+\end{verbatim}
+
+L'échange de clé est effectué, il est maintenant possible de réaliser les premiers tests avec Ansible.
+
+\subsection{Échange de clé sans mot de passe}
+
+L'échange de clé par mot de passe a été abordé. Le problème de cette méthode et qu'il n'est pas toujours possible d'avoir accès au sacro-saint mot de passe. Il est même probable que si vous l'obtenez, la configuration par défaut des machines empêchera la connexion directe par mot de passe (option \texttt{PermitRootLogin prohibit-password} dans le fichier \textbf{/etc/ssh/sshd_config} par exemple).
+
+Dans ce cas, l'échange de clé devra être réalisé manuellement. Ci-dessous les opérations à dérouler dans pareil cas :
+\begin{itemize}
+    \item Récupérez le contenu du fichier \textbf{~/.ssh/id_rsa.pub} sur la machine Ansible. 
+    \item Connectez-vous sur la machine distante.
+    \item Créez un répertoire .ssh avec des droits restreints à l'utilisateur :
+\end{itemize} 
+
+\begin{verbatim}
+$ mkdir -p ~/.ssh 
+$ chmod 700 ~/.ssh
+\end{verbatim}
+
+\begin{itemize}
+    \item Créez un fichier authorized_keys avec également des droits restreints :
+\end{itemize}
+
+\begin{verbatim}
+$ touch ~/.ssh/authorized_keys 
+chmod 600 ~/.ssh/authorized_keys    
+\end{verbatim}
+
+Déposez la clé dans le fichier authorized_keys.
+
+
+\subsection{Gestion d'une passphrase avec Ansible}
+
+Comme évoqué plus tôt, il est possible de protéger sa clé avec une passphrase. En effet, si ce n'est pas le cas, une personne malveillante pourrait récupérer la clé et en faire ce qu'elle veut.
+
+D'un autre côté, il faut communiquer la clé à Ansible ce qui implique de saisir la passphrase à chaque premier lancement. Attention de bien faire le ratio entre contrainte et sécurité.
+
+Ci-dessous un exemple de lancement d'Ansible avec une clé SSH protégée par passphrase :
+\begin{verbatim}
+ansible -i rec-apache-1.inv -m ping rec-apache-1  
+Enter passphrase for key '/home/deploy/.ssh/id_rsa':   
+rec-apache-1 | SUCCESS => {  
+    "changed": false, 
+    "ping": "pong" 
+}
+\end{verbatim}
+
+Pour éviter d'avoir à la saisir tout le temps, il est possible de passer par l'agent SSH de la session graphique (si vous utilisez KDE ou Gnome) ou en lançant un agent SSH (dans le cas où vous seriez connecté sur un serveur distant avec une session en mode texte).
+
+Pour ajouter la clé à l'agent, il faut passer par la commande \texttt{ssh-add} suivie du chemin vers la clé SSH. La commande demandera alors de saisir la passphrase. Ci-dessous un exemple d'ajout de clé SSH :
+
+\begin{verbatim}
+$ ssh-add .ssh/id_rsa
+Enter passphrase for .ssh/id_rsa:  
+Identity added: .ssh/id_rsa (.ssh/id_rsa)  
+\end{verbatim}
+
+Dans le cas où vous obtenez le message \textit{Error connecting to agent: No such file or directory}, il vous faut lancer un agent SSH avec la commande \texttt{eval \$(ssh-agent)}. Ci-dessous un exemple de lancement de cet agent :
+
+\begin{verbatim}
+$ eval $(ssh-agent)
+\end{verbatim}
+
+Cette commande doit retourner la sortie suivante :
+
+\begin{verbatim}
+Agent pid 20811
+\end{verbatim}
+
+Dans le cas où Ansible est lancé depuis une application tierce, ces clés devront être gérées par un mécanisme externe. Dans le cas de Jenkins, le plugin SSH Agent Plugin peut être utilisé. Dans d'autres cas, il n'y aura pas forcément de solutions miracles. Il faudra alors se passer de ce mécanisme.
+
+
+\section{Utilisation d'Ansible : Objectifs du chapitre et prérequis}
+\label{sec:Utilisation d'Ansible}
+36
+
+\section{Découverte de l'inventaire : Objectifs du chapitre et prérequis}
+\label{sec:Découverte de l'inventaire}
+90
+
+\section{Inventaires : notions avancées : Objectifs du chapitre et prérequis}
+\label{sec:Inventaires-notions avancées}
+129
+
+\section{Administration Windows : Objectifs du chapitre et prérequis}
+\label{sec:Administration Windows}
+214
+
+\section{Fonctionnement d'un playbook : Objectifs du chapitre et prérequis}
+\label{sec:Fonctionnement d'un playbook}
+267
+
+\section{Introduction à la notion de rôles : Objectifs du chapitre et prérequis}
+\label{sec:Introduction à la notion de rôles}
+336
+
+\section{Playbooks, rôles et notions avancées : Objectifs du chapitre et prérequis}
+\label{sec:Playbooks, rôles et notions avancées}
+437
+
+\section{Stratégie d'exécution et optimisation : Objectifs du chapitre et prérequis}
+\label{sec:Stratégie d'exécution et optimisation}
+597
+
+\section{Sortie Ansible et centralisation : Objectifs du chapitre et prérequis}
+\label{sec:Sortie Ansible et centralisation}
+696
+
+\section{Écriture de modules : Objectifs du chapitre et prérequis}
+\label{sec:Écriture de modules}
+759
+
+\section{Écriture de filtres jinja et mécanismes de lookup : Objectifs du chapitre et prérequis}
+\label{sec:Écriture de filtres jinja et mécanismes de lookup}
+848
+
+\section{Les actions Ansible : Objectifs du chapitre et prérequis}
+\label{sec:Les actions Ansible}
+916
+
+\section{Ansible : virtualisation et cloud : Objectifs du chapitre et prérequis}
+\label{sec:Ansible - virtualisation et cloud}
+938
+
+\section{Tester Ansible avec docker : Objectifs du chapitre et prérequis}
+\label{sec:Tester Ansible avec docker}
+1007
+
+\section{Pilotage de k8s à l'aide d'ansible : Objectifs du chapitre et prérequis}
+\label{sec:Pilotage de k8s à l'aide d'ansible}
+1061
+
+\end{document}
